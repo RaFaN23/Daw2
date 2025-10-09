@@ -1,9 +1,9 @@
 #navbar{
-    background-color: #EAD665 !important;
+    background-color: #9EDAA8 !important;
     color: #2CAE41 !important;
     font-family: Arial, Helvetica, sans-serif;
 }
-span{
+body{
     font-family: 'Belanosima', sans-serif;
 }
 
@@ -32,11 +32,16 @@ span{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
-
+#videocentro::after {
+    content: "";
+    position: absolute;
+    filter: blur(10px) !important;
+}
 .coloresBotones{
     background-color: #2CAE41 !important;
-    color: #EAD665 !important;
+    color: white !important;
     font-family: 'Belanosima', sans-serif;  
     border:none !important;
 }
@@ -54,5 +59,18 @@ span{
     display: flex;
     justify-content: center;
     word-spacing: 2px;
+}
+
+.textoNosotros{
+    display: flex;
+    justify-content: center;
+    width:70%;
+
+}
+.nosotros{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
