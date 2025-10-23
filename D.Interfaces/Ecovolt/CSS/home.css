@@ -80,3 +80,23 @@ body{
     align-items: center;
     
 }
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:active {
+    text-decoration: none;
+    color: inherit;
+}
