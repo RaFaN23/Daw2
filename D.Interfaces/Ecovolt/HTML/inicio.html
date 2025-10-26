@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <img src="../IMG/light-bulb.png" alt="logo" width="50px"> <a href="home.html">ECOVOLT</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Placas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Clientes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Valores</a>
+                  </li>
+                </ul>
+                <div id="inicio_Registro">
+                    <a href="../HTML/inicio.html"><button type="button" class="btn btn-primary coloresBotones ">Iniciar Sesión</button></a>
+                    <a href="../HTML/registro.html"><button type="button" class="btn btn-primary coloresBotones ">Registrarse</button></a>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+    
+    
+    
+    <footer class="footer">
+        <div class="footer_izq">
+          <div class="oficina-item">
+            <button class="toggle-map-btn" onclick="toggleMap('mapMadrid')">
+              <h5>Oficina Madrid</h5>
+              <span class="arrow">▼</span>
+            </button>
+            <div id="mapMadrid" class="map-container">
+              <p>Calle Núñez de Balboa, 120. Madrid</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6073.339170588849!2d-3.6840792879884003!3d40.438314754205436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228c1ed7299b5%3A0xa3c0ef96cfa3c72e!2sCalle%20de%20N%C3%BA%C3%B1ez%20de%20Balboa%2C%20120%2C%20Chamart%C3%ADn%2C%2028006%20Madrid!5e0!3m2!1ses-419!2ses!4v1761475660377!5m2!1ses-419!2ses" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+          <div class="oficina-item">
+            <button class="toggle-map-btn" onclick="toggleMap('mapSevilla')">
+              <h5>Oficina Sevilla</h5>
+              <span class="arrow">▼</span>
+            </button>
+            <div id="mapSevilla" class="map-container">
+              <p>Parque científico y tecnológico Cartuja, Calle Isaac Newton 4. Sevilla</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3169.3355247133763!2d-6.007483038099148!3d37.405543633226046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sOficina%20Sevilla%20%E2%80%93%20Parque%20cient%C3%ADfico%20y%20tecnol%C3%B3gico%20Cartuja%2C%20Calle%20Isaac%20Newton%204.%20Sevilla!5e0!3m2!1ses-419!2ses!4v1761475696792!5m2!1ses-419!2ses" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div> 
+        <div class="footer_der">
+          <h4>Contacto</h4>
+          <div class="contacto-info">
+            <p><strong>Teléfono:</strong></p>
+            <p>912 345 678 // 611 234 567</p>
+            <p><strong>Correo:</strong></p>
+            <p>Ecovolt@gmail.com</p>
+          </div>
+        </div>
+    </footer>
+    
+    <script>
+        function toggleMap(mapId) {
+            const mapContainer = document.getElementById(mapId);
+            const button = mapContainer.previousElementSibling;
+            const arrow = button.querySelector('.arrow');
+            
+            if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                mapContainer.style.display = 'block';
+                arrow.textContent = '▲';
+            } else {
+                mapContainer.style.display = 'none';
+                arrow.textContent = '▼';
+            }
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('mapMadrid').style.display = 'none';
+            document.getElementById('mapSevilla').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
