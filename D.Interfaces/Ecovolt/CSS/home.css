@@ -234,3 +234,110 @@ footer{
 .contacto-info strong{
     font-weight: 600;
 }
+
+.valores-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.texto-valores {
+    color: #333;
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.card-valor {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    height: 100%;
+    border: none;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.card-valor.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-valor:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.valor-icon {
+    margin-bottom: 25px;
+}
+
+.card-valor h4 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.card-valor p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+
+
+.card-hover {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid #2CAE41;
+}
+
+
+.card-hover {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.card-hover.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.cajasNosotros .card-hover:nth-child(1) { transition-delay: 0.1s; }
+.cajasNosotros .card-hover:nth-child(2) { transition-delay: 0.2s; }
+.cajasNosotros .card-hover:nth-child(3) { transition-delay: 0.3s; }
+
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: #2CAE41;
+}
+
+.card-text {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.rounded-start {
+    height: 100%;
+    object-fit: cover;
+}

@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/home.css">
+    <link rel="stylesheet" href="../CSS/registro.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
@@ -20,15 +20,11 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <img src="../IMG/light-bulb.png" alt="logo" width="50px"> <a href="home.html">ECOVOLT</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Placas</a>
+                    <a class="nav-link" href="../HTML/clientes.html">Clientes</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Clientes</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Valores</a>
-                  </li>
+                  
                 </ul>
                 <div id="inicio_Registro">
                     <a href="../HTML/inicio.html"><button type="button" class="btn btn-primary coloresBotones ">Iniciar Sesión</button></a>
@@ -39,7 +35,57 @@
           </nav>
     </header>
     
-    
+    <main>
+      <div class="registro-container">
+      <div class="registro-form">
+          <h2 class="form-title">Crear Cuenta</h2>
+          <form>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="mb-3">
+                          <label for="nombre" class="form-label">Nombre</label>
+                          <input type="text" class="form-control" id="nombre" name="nombre" required>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="mb-3">
+                          <label for="apellido" class="form-label">Apellido</label>
+                          <input type="text" class="form-control" id="apellido" name="apellido" required>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              
+              <div class="mb-3">
+                  <label for="direccion" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="direccion" name="direccion" required>
+              </div>
+              
+              <div class="mb-3">
+                  <label for="codigoPostal" class="form-label">Código Postal</label>
+                  <input type="text" class="form-control" id="codigoPostal" name="codigoPostal" required>
+              </div>
+              
+              <div class="mb-3">
+                  <label for="contrasena" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+              </div>
+              
+              <div class="d-grid">
+                  <button type="submit" class="btn btn-primary coloresBotones btn-lg">Registrarse</button>
+              </div>
+              
+              <div class="text-center mt-3">
+                  <p>¿Ya tienes cuenta? <a href="../HTML/registro.html" class="text-decoration-none">Inicia Sesión</a></p>
+              </div>
+          </form>
+      </div>
+  </div>
+    </main>
     
     <footer class="footer">
         <div class="footer_izq">
