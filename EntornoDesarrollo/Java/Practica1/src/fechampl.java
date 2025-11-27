@@ -1,31 +1,24 @@
 public class fechampl implements Fecha{
     private Integer dia;
     private Integer mes;
-    private  Integer anio;
+    private Integer ano;
 
-    @Override
-    public Integer getdia() {
+    public fechampl(Integer d, Integer m, Integer a){
+        dia=d;
+        mes=m;
+        ano=a;
+    }
+    public Integer getDia() {
         return dia;
     }
-
-    @Override
-    public Integer getmes() {
+    public Integer getMes() {
         return mes;
     }
-
-    @Override
-    public Integer getanio() {
-        return anio;
-    }
-    public void setdia(Integer dia) {
-        this.dia = dia;
-
-    }
-    public void setmes(Integer mes) {
-        this.mes = mes;
-    }
-    public void setanio(Integer anio) {
-        this.anio = anio;
+    public Integer getAno() {
+        return ano;
     }
 
+    public String toString(){
+        return getDia()+"/"+getMes()+"/"+getAno();
+    }
 }

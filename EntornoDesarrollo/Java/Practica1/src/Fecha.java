@@ -1,5 +1,5 @@
 public interface Fecha {
-    Integer getdia();
-    Integer getmes();
-    Integer getanio();
+    Integer getDia();
+    Integer getMes();
+    Integer getAno();
 }

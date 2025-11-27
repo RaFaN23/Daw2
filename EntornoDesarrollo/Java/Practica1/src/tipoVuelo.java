@@ -66,6 +66,11 @@ public class tipoVuelo  implements vuelo{
     }
 
     @Override
+    public void setPiloto() {
+
+    }
+
+    @Override
     public void setPiloto(Persona p) {
         Piloto=p;
     }
