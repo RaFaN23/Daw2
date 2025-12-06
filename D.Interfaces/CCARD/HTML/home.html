@@ -4,17 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCARD</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid NAVIZQ">
+                <a class="navbar-brand" href="#">
+                    <img src="../IMG/logo.png" alt="Logo" width="50" height="54" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="../HTML/home.html">Inicio</a>
+                        <a class="nav-link" href="#">Catalogo</a>
+                        <a class="nav-link" href="#">Pedidos</a>
+                    </div>
+                </div>
+                <div class="NAVDER">
+                    <button type="button" id="carrito" class="btn btn-primary btn-lg">Carrito</button>
+                    <button type="button" id="Iniciosesion" class="btn btn-primary btn-lg">Inicio Sesion</button>
+                    <button type="button" id="Registrarse" class="btn btn-secondary btn-lg">Registrarse</button>
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
-        
+        <section id="hero-section">
+            <img id="hero-image" src="../IMG/98.webp" alt="CCARD - Tu tienda online">
+            <div class="fondoletras" id="hero-content">
+                <div id="hero-title">
+                    <h2 class="colorNegro">CCARD - Tu tienda online</h2>
+                </div>
+                <p class="colorNegro">Compra, vende y colecciona cartas temáticas, deckbuilding, sellos raros y booster seleccionado por pros</p>
+                <div class="botonTop">
+                    <button type="button" id="botoncentro1" class="btn btn-primary btn-sm">Explorar catalogo</button>
+                    <button type="button" id="botoncentro2" class="btn btn-secondary btn-sm">Sobre CCARD</button>
+                </div>
+            </div>
+        </section>
+        <div class="obejtosDestacados">
+            
+        </div>
     </main>
+
+
+
     <footer>
         <p>CCARD &copy; 2025</p>
     </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
