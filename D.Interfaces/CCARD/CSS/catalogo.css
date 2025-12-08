@@ -385,7 +385,7 @@ body {
     background: #aaa;
 }
 
-/* --- ESTILOS PARA LAS CARDS DE PRODUCTOS --- */
+
 .card-producto {
     background: white;
     border-radius: 12px;
@@ -521,7 +521,7 @@ body {
     transform: scale(1.1);
 }
 
-/* MEDIA QUERIES */
+
 
 @media (max-width: 768px) {
     #hero-section {

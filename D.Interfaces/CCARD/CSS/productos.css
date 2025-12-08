@@ -1,0 +1,310 @@
+body {
+    background-color: #f9fafbdc;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../IMG/f.elconfidencial.com_original_f14_d6c_f24_f14d6cf2455fc582859ce614569ec27d - Editada.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+.navbar {
+    background-color: #000000 !important;
+}
+
+#carrito {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+#perfil, #cerrar-sesion {
+    background-color: #5f3bb9;
+    border-color: #5f3bb9;
+    color: white;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
+
+main {
+    padding: 20px 0;
+}
+
+.footer {
+    background-color: whitesmoke !important;
+}
+
+.footer h5 {
+    color: #212529 !important;
+}
+
+.footer .contact-info p {
+    color: #212529;
+}
+
+.footer .social-icons .btn {
+    border-color: #212529;
+    color: #212529;
+}
+
+
+.producto-contenedor {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.producto-imagen {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.producto-imagen img {
+    width: 100%;
+    height: auto;
+}
+
+.producto-detalles h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+.producto-calificacion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.calificacion-estrellas {
+    display: flex;
+    gap: 3px;
+}
+
+.estrella {
+    width: 20px;
+    height: 20px;
+    background-color: #ffc107;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.estrella.mitad {
+    background: linear-gradient(90deg, #ffc107 50%, #ddd 50%);
+}
+
+.estrella.vacia {
+    background-color: #ddd;
+}
+
+.estrella.pequeña {
+    width: 15px;
+    height: 15px;
+}
+
+.calificacion-texto {
+    color: #666;
+}
+
+
+.producto-precio {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.precio-actual {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.precio-anterior {
+    font-size: 1.2rem;
+    color: #999;
+    text-decoration: line-through;
+}
+
+
+.producto-descripcion {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+
+.producto-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: #5f3bb9;
+    border-color: #5f3bb9;
+    padding: 10px 20px;
+}
+
+.btn-outline-primary {
+    border-color: #5f3bb9;
+    color: #5f3bb9;
+    padding: 10px 20px;
+}
+
+.btn-outline-primary:hover {
+    background-color: #5f3bb9;
+    color: white;
+}
+
+.producto-resenas {
+    margin-top: 30px;
+}
+
+.resena-item {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.resena-item:last-child {
+    border-bottom: none;
+}
+
+.resena-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.resena-usuario {
+    font-weight: bold;
+    color: #333;
+}
+
+.resena-fecha {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.resena-estrellas {
+    display: flex;
+    gap: 2px;
+}
+
+.resena-titulo {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.resena-texto {
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.resena-util {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+
+.escribir-resena {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.estrellas-seleccion {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.btn-estrella {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-estrella:hover {
+    color: #ffc107;
+}
+
+
+@media (max-width: 768px) {
+    .producto-contenedor {
+        padding: 15px;
+    }
+    
+    .producto-botones {
+        flex-direction: column;
+    }
+    
+    .resena-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .producto-contenedor {
+        padding: 10px;
+    }
+    
+    .producto-detalles h2 {
+        font-size: 1.3rem;
+    }
+    
+    .precio-actual {
+        font-size: 1.5rem;
+    }
+    
+    .estrella {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .estrella.pequeña {
+        width: 12px;
+        height: 12px;
+    }
+}

@@ -85,14 +85,13 @@ main {
     border-color: #8b0fae;
 }
 
-/* Estilos simples */
+
 .contenido-pedidos {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
 }
 
-/* Progreso simple */
 .progreso-pedido {
     display: flex;
     justify-content: space-between;
@@ -128,7 +127,6 @@ main {
     margin: 0;
 }
 
-/* Productos lista */
 .productos-lista {
     margin-bottom: 15px;
 }
@@ -159,19 +157,18 @@ main {
     text-align: right;
 }
 
-/* Productos historial */
+
 .producto-item-historial {
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
 }
 
-/* Resumen */
+
 .resumen-pedido p {
     margin: 5px 0;
 }
 
-/* Botones */
 .btn-outline-secondary {
     width: 25px;
     height: 25px;
@@ -179,7 +176,7 @@ main {
     margin: 0 5px;
 }
 
-/* Media Queries */
+
 @media (max-width: 768px) {
     .contenido-pedidos {
         padding: 15px;

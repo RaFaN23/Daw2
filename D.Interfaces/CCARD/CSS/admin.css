@@ -1,0 +1,385 @@
+body {
+    background-color: #f9fafbdc;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../IMG/f.elconfidencial.com_original_f14_d6c_f24_f14d6cf2455fc582859ce614569ec27d - Editada.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+.navbar {
+    background-color: #000000 !important;
+}
+
+#carrito {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+#perfil, #cerrar-sesion {
+    background-color: #5f3bb9;
+    border-color: #5f3bb9;
+    color: white;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+main {
+    padding: 20px 0;
+}
+
+.footer {
+    background-color: whitesmoke !important;
+}
+
+.footer h5 {
+    color: #212529 !important;
+}
+
+.footer .contact-info p {
+    color: #212529;
+}
+
+.footer .social-icons .btn {
+    border-color: #212529;
+    color: #212529;
+}
+
+
+.admin-contenedor {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.admin-resumen {
+    margin-bottom: 30px;
+}
+
+.resumen-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.resumen-titulo {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.resumen-valor {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.resumen-sub {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+
+.admin-seccion {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.seccion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.seccion-header h4 {
+    margin: 0;
+    color: #333;
+}
+
+
+.table th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    color: #333;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.stock-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stock-control button {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+}
+
+.stock-control div {
+    min-width: 30px;
+    text-align: center;
+}
+
+
+.pedidos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pedido-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+}
+
+.pedido-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pedido-id {
+    font-weight: bold;
+    color: #333;
+}
+
+.pedido-cliente, .pedido-fecha, .pedido-total {
+    color: #666;
+}
+
+.pedido-estado {
+    margin-left: 10px;
+}
+
+.estado-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.estado-badge.pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.estado-badge.preparacion {
+    background-color: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+}
+
+.estado-badge.enviado {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.estado-badge.entregado {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.pedido-acciones {
+    display: flex;
+    gap: 5px;
+}
+
+
+.alerta-stock {
+    color: #856404;
+    background-color: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ffeaa7;
+    font-size: 0.9rem;
+}
+
+.stock-bajo-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stock-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ffeaa7;
+    border-radius: 6px;
+    background-color: #fff3cd;
+}
+
+.stock-producto {
+    font-weight: bold;
+    color: #856404;
+}
+
+.stock-cantidad {
+    color: #856404;
+}
+
+
+.btn-primary {
+    background-color: #5f3bb9;
+    border-color: #5f3bb9;
+}
+
+.btn-outline-primary {
+    border-color: #5f3bb9;
+    color: #5f3bb9;
+}
+
+.btn-outline-primary:hover {
+    background-color: #5f3bb9;
+    color: white;
+}
+
+.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-outline-success {
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+
+@media (max-width: 768px) {
+    .admin-contenedor {
+        padding: 15px;
+    }
+    
+    .seccion-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .pedido-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .pedido-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .pedido-acciones {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .stock-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .stock-accion {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-contenedor {
+        padding: 10px;
+    }
+    
+    .admin-seccion {
+        padding: 15px;
+    }
+    
+    .resumen-item {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .resumen-valor {
+        font-size: 1.5rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+    
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+}

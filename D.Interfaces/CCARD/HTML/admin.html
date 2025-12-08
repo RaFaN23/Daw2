@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCARD - Administración</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid NAVIZQ">
+                <a class="navbar-brand" href="#">
+                    <img src="../IMG/logo.png" alt="Logo" width="50" height="54" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="../HTML/home.html">Inicio</a>
+                        <a class="nav-link" href="../HTML/catalogo.html">Catalogo</a>
+                        <a class="nav-link" href="../HTML/pedidos.html">Pedidos</a>
+                    </div>
+                </div>
+                <div class="NAVDER">
+                    <a href="../HTML/carrito.html">
+                        <button type="button" id="carrito" class="btn btn-primary btn-lg">
+                            Carrito
+                        </button>
+                    </a>
+                    <a href="./perfil.html">
+                        <button type="button" id="perfil" class="btn btn-primary btn-lg">Perfil</button>
+                    </a>
+                    <a href="../HTML/home.html">
+                        <button type="button" id="cerrar-sesion" class="btn btn-secondary btn-lg">Salir</button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="admin-contenedor">
+                        <h2 class="text-center mb-4">Panel de Administración</h2>
+                        
+                       
+                        <div class="admin-resumen">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="resumen-item">
+                                        <div class="resumen-titulo">Productos</div>
+                                        <div class="resumen-valor">48</div>
+                                        <div class="resumen-sub">En stock</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="resumen-item">
+                                        <div class="resumen-titulo">Pedidos</div>
+                                        <div class="resumen-valor">156</div>
+                                        <div class="resumen-sub">Este mes</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="resumen-item">
+                                        <div class="resumen-titulo">Clientes</div>
+                                        <div class="resumen-valor">89</div>
+                                        <div class="resumen-sub">Activos</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="resumen-item">
+                                        <div class="resumen-titulo">Ingresos</div>
+                                        <div class="resumen-valor">12,450€</div>
+                                        <div class="resumen-sub">Este mes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+              
+                        <div class="admin-seccion mt-5">
+                            <div class="seccion-header">
+                                <h4>Gestión de Productos</h4>
+                                <button class="btn btn-primary btn-sm">
+                                    Añadir producto
+                                </button>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Producto</th>
+                                            <th>Stock</th>
+                                            <th>Precio</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>P001</td>
+                                            <td>Sobre Pokémon Escarlata</td>
+                                            <td>
+                                                <div class="stock-control">
+                                                    <button class="btn btn-sm btn-outline-secondary">-</button>
+                                                    <div>45</div>
+                                                    <button class="btn btn-sm btn-outline-secondary">+</button>
+                                                </div>
+                                            </td>
+                                            <td>24.99€</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    Editar
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    Eliminar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>P002</td>
+                                            <td>Booster Box MTG</td>
+                                            <td>
+                                                <div class="stock-control">
+                                                    <button class="btn btn-sm btn-outline-secondary">-</button>
+                                                    <div>12</div>
+                                                    <button class="btn btn-sm btn-outline-secondary">+</button>
+                                                </div>
+                                            </td>
+                                            <td>149.99€</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    Editar
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    Eliminar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>P003</td>
+                                            <td>Mazo Yu-Gi-Oh!</td>
+                                            <td>
+                                                <div class="stock-control">
+                                                    <button class="btn btn-sm btn-outline-secondary">-</button>
+                                                    <div>28</div>
+                                                    <button class="btn btn-sm btn-outline-secondary">+</button>
+                                                </div>
+                                            </td>
+                                            <td>34.99€</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    Editar
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    Eliminar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>P004</td>
+                                            <td>Elite Trainer Box</td>
+                                            <td>
+                                                <div class="stock-control">
+                                                    <button class="btn btn-sm btn-outline-secondary">-</button>
+                                                    <div>8</div>
+                                                    <button class="btn btn-sm btn-outline-secondary">+</button>
+                                                </div>
+                                            </td>
+                                            <td>64.99€</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary">
+                                                    Editar
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    Eliminar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+         
+                        <div class="admin-seccion mt-5">
+                            <div class="seccion-header">
+                                <h4>Gestión de Pedidos</h4>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-primary btn-sm active">
+                                        Todos
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        Pendientes
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        Enviados
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="pedidos-lista">
+                                <div class="pedido-item">
+                                    <div class="pedido-info">
+                                        <div class="pedido-id">Pedido #CC-2025-0012</div>
+                                        <div class="pedido-cliente">Juan Pérez</div>
+                                        <div class="pedido-fecha">15/01/2025</div>
+                                        <div class="pedido-total">239.95€</div>
+                                        <div class="pedido-estado">
+                                            <div class="estado-badge preparacion">En preparación</div>
+                                        </div>
+                                    </div>
+                                    <div class="pedido-acciones">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            Ver
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success">
+                                            Marcar enviado
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="pedido-item">
+                                    <div class="pedido-info">
+                                        <div class="pedido-id">Pedido #CC-2025-0011</div>
+                                        <div class="pedido-cliente">María García</div>
+                                        <div class="pedido-fecha">14/01/2025</div>
+                                        <div class="pedido-total">114.98€</div>
+                                        <div class="pedido-estado">
+                                            <div class="estado-badge enviado">Enviado</div>
+                                        </div>
+                                    </div>
+                                    <div class="pedido-acciones">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            Ver
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success">
+                                            Marcar entregado
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="pedido-item">
+                                    <div class="pedido-info">
+                                        <div class="pedido-id">Pedido #CC-2025-0010</div>
+                                        <div class="pedido-cliente">Carlos López</div>
+                                        <div class="pedido-fecha">13/01/2025</div>
+                                        <div class="pedido-total">64.99€</div>
+                                        <div class="pedido-estado">
+                                            <div class="estado-badge entregado">Entregado</div>
+                                        </div>
+                                    </div>
+                                    <div class="pedido-acciones">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            Ver
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            Archivar
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="pedido-item">
+                                    <div class="pedido-info">
+                                        <div class="pedido-id">Pedido #CC-2025-0009</div>
+                                        <div class="pedido-cliente">Ana Martínez</div>
+                                        <div class="pedido-fecha">12/01/2025</div>
+                                        <div class="pedido-total">149.99€</div>
+                                        <div class="pedido-estado">
+                                            <div class="estado-badge pendiente">Pendiente</div>
+                                        </div>
+                                    </div>
+                                    <div class="pedido-acciones">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            Ver
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success">
+                                            Procesar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+             
+                        <div class="admin-seccion mt-5">
+                            <div class="seccion-header">
+                                <h4>Stock Bajo</h4>
+                                <div class="alerta-stock">¡Atención! Productos con stock bajo</div>
+                            </div>
+                            
+                            <div class="stock-bajo-lista">
+                                <div class="stock-item">
+                                    <div class="stock-producto">Elite Trainer Box</div>
+                                    <div class="stock-cantidad">8 unidades</div>
+                                    <div class="stock-accion">
+                                        <button class="btn btn-sm btn-warning">
+                                            Reponer
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="stock-item">
+                                    <div class="stock-producto">Booster Box MTG</div>
+                                    <div class="stock-cantidad">12 unidades</div>
+                                    <div class="stock-accion">
+                                        <button class="btn btn-sm btn-warning">
+                                            Reponer
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="stock-item">
+                                    <div class="stock-producto">Sobre Commander</div>
+                                    <div class="stock-cantidad">5 unidades</div>
+                                    <div class="stock-accion">
+                                        <button class="btn btn-sm btn-warning">
+                                            Reponer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-5 py-4 bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+                
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-3 text-dark">Nuestra ubicación</h5>
+                    <div class="map-responsive">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.489402402795!2d-5.996859488105838!3d37.401905733434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126bf7fc8e6361%3A0x8ac0fb6310472dcd!2sC.%20Calatrava%2C%20Casco%20Antiguo%2C%2041002%20Sevilla!5e0!3m2!1ses!2ses!4v1765200085376!5m2!1ses!2ses" 
+                                width="100%" 
+                                height="250" 
+                                style="border:0; border-radius: 8px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 text-dark">
+                    <h5 class="mb-3 text-dark">Contáctanos</h5>
+                    <div class="contact-info mb-4">
+                        <p class="mb-2 text-dark">
+                            C. Calatrava, Casco Antiguo, 41002 Sevilla
+                        </p>
+                        <p class="mb-2 text-dark">
+                            +34 123 456 789
+                        </p>
+                        <p class="mb-3 text-dark">
+                            info@ccard.com
+                        </p>
+                    </div>
+                    
+                    <h5 class="mb-3 text-dark">Síguenos</h5>
+                    <div class="social-icons">
+                        <a href="#" class="btn btn-outline-dark me-2 mb-2">
+                            Instagram
+                        </a>
+                        <a href="#" class="btn btn-outline-dark me-2 mb-2">
+                            Twitter
+                        </a>
+                        <a href="#" class="btn btn-outline-dark me-2 mb-2">
+                            Facebook
+                        </a>
+                        <a href="mailto:info@ccard.com" class="btn btn-outline-dark mb-2">
+                            Correo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-dark">CCARD &copy; 2025 - Todos los derechos reservados</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
