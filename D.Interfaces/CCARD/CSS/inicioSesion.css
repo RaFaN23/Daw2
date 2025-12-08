@@ -1,0 +1,205 @@
+
+body {
+    background-color: #f9fafbdc;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../IMG/f.elconfidencial.com_original_f14_d6c_f24_f14d6cf2455fc582859ce614569ec27d - Editada.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -2;
+}
+
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1; 
+}
+
+
+.navbar {
+    background-color: #000000 !important;
+    position: relative;
+    z-index: 1000; 
+}
+
+#carrito {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+#Iniciosesion, #Registrarse {
+    background-color: #5f3bb9;
+    border-color: #5f3bb9;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative; 
+    z-index: 1;
+}
+
+#Iniciosesion:hover, #Registrarse:hover {
+    transform: translateY(-3px);
+    background-color: #5f3bb9;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+
+main {
+    min-height: calc(100vh - 300px);
+    padding: 50px 0;
+    position: relative;
+    z-index: 1;
+}
+
+
+.footer {
+    background-color: whitesmoke !important;
+    border-top: 1px solid whitesmoke;
+    position: relative;
+    z-index: 1000;
+}
+
+.footer h5 {
+    color: #212529 !important;
+    font-weight: 600;
+}
+
+.footer .contact-info i {
+    color: #3c0fae;
+    width: 20px;
+}
+
+.footer .contact-info p {
+    color: #212529;
+}
+
+.footer .social-icons .btn {
+    border-radius: 50px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+    border-color: #212529;
+    color: #212529;
+    position: relative; 
+    z-index: 1;
+}
+
+.footer .social-icons .btn:hover {
+    background-color: #8b0fae;
+    color: white;
+    border-color: #8b0fae;
+    transform: translateY(-2px);
+}
+
+.footer .social-icons .btn i {
+    margin-right: 5px;
+}
+
+.map-responsive {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.footer hr {
+    border-color: #dee2e6;
+}
+
+/*Esto se lo pregunte a chatgpt por que me bloqueba todo la imagen*/
+.navbar a,
+.navbar button,
+.footer a,
+.footer button,
+.botonTop button,
+.btn,
+.btn-lg,
+.btn-sm {
+    position: relative;
+    z-index: 10;
+}
+
+
+.contenido-main {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.cuerpoForm{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    height: auto;
+    width:50vh;
+}
+
+.posicionform{
+    display: flex;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .footer .social-icons .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .map-responsive iframe {
+        height: 200px;
+    }
+    
+    main {
+        min-height: calc(100vh - 400px);
+        padding: 30px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer {
+        text-align: center;
+    }
+    
+    .footer .contact-info {
+        text-align: center;
+    }
+    
+    .footer .contact-info p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    main {
+        min-height: calc(100vh - 500px);
+        padding: 20px 0;
+    }
+}

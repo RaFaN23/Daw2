@@ -1,0 +1,610 @@
+body {
+    background-color: #f9fafbdc;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #5f3bb9;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #000000 !important;
+}
+
+#carrito {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+#Iniciosesion, #Registrarse {
+    background-color: #5f3bb9;
+    border-color: #5f3bb9;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#Iniciosesion:hover, #Registrarse:hover {
+    transform: translateY(-3px);
+    background-color: #5f3bb9;
+}
+
+#palabraclave{
+    background-color: #000000;
+    border-color: #000000;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+#palabraclave:hover {
+    transform: translateY(-3px);
+    background-color: #000000;
+}
+.nav-link {
+    color: white !important;
+}
+
+.footer {
+    background-color: whitesmoke !important;
+    border-top: 1px solid whitesmoke;
+}
+
+.footer h5 {
+    color: #212529 !important;
+    font-weight: 600;
+}
+
+.footer .contact-info i {
+    color: #3c0fae;
+    width: 20px;
+}
+
+.footer .contact-info p {
+    color: #212529;
+}
+
+.footer .social-icons .btn {
+    border-radius: 50px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+    border-color: #212529;
+    color: #212529;
+}
+
+.footer .social-icons .btn:hover {
+    background-color: #8b0fae;
+    color: white;
+    border-color: #8b0fae;
+    transform: translateY(-2px);
+}
+
+.footer .social-icons .btn i {
+    margin-right: 5px;
+}
+
+.map-responsive {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.footer hr {
+    border-color: #dee2e6;
+}
+
+#hero-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 80%;
+    max-width: 800px;
+}
+
+#hero-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.botonTop {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.colorNegro {
+    color: #5f3bb9;
+}
+
+#botoncentro1, #botoncentro2 {
+    background-color: #5f3bb9 !important;
+    border-color: #5f3bb9;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+}
+
+#botoncentro1:hover, #botoncentro2:hover {
+    transform: translateY(-3px);
+    background-color: #5f3bb9;
+}
+
+.fondoletras {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tarjetasDestacadas {
+    width: 80%;
+    height: 100%;
+}
+
+.obejtosDestacados {
+    display: flex;
+    align-items: center;
+    margin-top: 2vh;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.obejtosDestacados h3 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.card-body {
+    background-color: whitesmoke;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: 600;
+    color: #333;
+    min-height: 60px;
+}
+
+.busqueda{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 3vh;
+}
+
+.filtro-lateral {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 15px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    margin-right: 20px;
+}
+
+.filtro-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.filtro-header {
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.filtro-title {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.filtro-subtitle {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+.filtro-opciones {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.filtro-option {
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.filtro-option:hover {
+    background-color: #f5f5f5;
+}
+
+.filtro-label {
+    font-size: 0.9rem;
+    color: #444;
+    cursor: pointer;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+
+.badge-indicador {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    border-radius: 4px;
+    color: white;
+    min-width: 24px;
+    text-align: center;
+}
+
+.opcion-precio .badge-indicador {
+    background-color: #28a745;
+}
+
+.opcion-popularidad .badge-indicador {
+    background-color: #dc3545;
+}
+
+.opcion-novedad .badge-indicador {
+    background-color: #17a2b8;
+}
+
+.opcion-oferta .badge-indicador {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.opcion-recomendacion .badge-indicador {
+    background-color: #6f42c1;
+}
+
+.filtro-footer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-filtro {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+
+.catalogo {
+    padding: 20px;
+}
+
+.busqueda {
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filtro_cards {
+    display: flex;
+    gap: 20px;
+}
+
+.contenedor-cartas {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#hero-section {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#hero-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.colorNegro {
+    color: #000;
+}
+
+.filtro-opciones::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filtro-opciones::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.filtro-opciones::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.filtro-opciones::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* --- ESTILOS PARA LAS CARDS DE PRODUCTOS --- */
+.card-producto {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eaeaea;
+}
+
+.card-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-imagen-container {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    border-radius: 0;
+}
+
+.card-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-producto:hover .card-imagen {
+    transform: scale(1.05);
+}
+
+.card-contenido {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-titulo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.card-descripcion {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.card-especificaciones {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.especificacion-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.especificacion-item:last-child {
+    margin-bottom: 0;
+}
+
+.especificacion-item i {
+    width: 20px;
+    color: #0d6efd;
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.card-precio-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.card-precio {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #28a745;
+}
+
+.card-precio-rebaja {
+    display: flex;
+    flex-direction: column;
+}
+
+.precio-rebajado {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #28a745;
+}
+
+.precio-original {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.btn-agregar-carrito {
+    background-color: #5f3bb9;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-agregar-carrito:hover {
+    background-color: #4a2d94;
+    transform: scale(1.1);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 768px) {
+    #hero-section {
+        height: 350px;
+    }
+    
+    #hero-content {
+        width: 90%;
+    }
+    
+    #hero-title h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    #hero-content p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .fondoletras {
+        padding: 15px;
+    }
+    
+    .botonTop {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    #botoncentro1, #botoncentro2 {
+        width: 100%;
+        max-width: 250px;
+        padding: 8px 20px;
+        font-size: 1rem;
+    }
+    
+    .obejtosDestacados {
+        padding: 30px 15px;
+    }
+    
+    .obejtosDestacados h3 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    
+    .tarjetasDestacadas {
+        width: 95%;
+    }
+    
+    .card-img-top {
+        height: 180px;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+        min-height: 50px;
+    }
+    
+    .footer .social-icons .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .map-responsive iframe {
+        height: 200px;
+    }
+    
+    .NAVDER {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .NAVDER a {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .NAVDER button {
+        width: 100%;
+    }
+    
+}

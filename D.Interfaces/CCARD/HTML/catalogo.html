@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCARD - Catálogo</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/catalogo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid NAVIZQ">
+                <a class="navbar-brand" href="#">
+                    <img src="../IMG/logo.png" alt="Logo" width="50" height="54" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="../HTML/home.html">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="../HTML/catalogo.html">Catalogo</a>
+                        <a class="nav-link" href="../HTML/pedidos.html">Pedidos</a>
+                    </div>
+                </div>
+                <div class="NAVDER">
+                    <a href="../HTML/carrito.html">
+                        <button type="button" id="carrito" class="btn btn-primary btn-lg">Carrito</button>
+                    </a>
+                    <a href="./inicioSesion.html">
+                        <button type="button" id="Iniciosesion" class="btn btn-primary btn-lg">Inicio Sesion</button>
+                    </a>
+                    <a href="../HTML/registro.html">
+                        <button type="button" id="Registrarse" class="btn btn-secondary btn-lg">Registrarse</button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="hero-section">
+            <img id="hero-image" src="../IMG/fondopagina - Editada.jpg" alt="CCARD - Tu tienda online">
+            <div class="fondoletras" id="hero-content">
+                <div id="hero-title">
+                    <h2 class="colorNegro">CCARD - Nuestro catálogo a tu disposición</h2>
+                </div>
+                <p class="colorNegro">Las mejores cartas a los mejores precios</p>
+            </div>
+        </section>
+        
+        <div class="catalogo">
+            <div class="busqueda">
+                 <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Busca por nombre, colección o tipo..." aria-label="Search">
+                    <button class="btn btn-outline-success" id="palabraclave" type="submit">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </form>
+            </div>
+            
+            <div class="filtro_cards">
+            
+                <div class="filtro-lateral" style="width: 20vh;">
+                    <div class="filtro-container">
+                        <div class="filtro-header">
+                            <h6 class="filtro-title">
+                                <i class="fas fa-filter me-2"></i>Filtros
+                            </h6>
+                            <p class="filtro-subtitle">Selecciona opciones</p>
+                        </div>
+                        
+                        <div class="filtro-opciones">
+                           
+                            <div class="filtro-option opcion-precio">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input" type="checkbox" id="filtro-precio" checked>
+                                    <label class="filtro-label ms-2" for="filtro-precio">Precio</label>
+                                    <span class="badge badge-precio badge-indicador ms-auto">$</span>
+                                </div>
+                            </div>
+                            
+                         
+                            <div class="filtro-option opcion-popularidad">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input" type="checkbox" id="filtro-popularidad" checked>
+                                    <label class="filtro-label ms-2" for="filtro-popularidad">Popularidad</label>
+                                    <span class="badge badge-popularidad badge-indicador ms-auto">
+                                        <i class="fas fa-fire"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="filtro-option opcion-novedad">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input" type="checkbox" id="filtro-novedad">
+                                    <label class="filtro-label ms-2" for="filtro-novedad">Novedad</label>
+                                    <span class="badge badge-novedad badge-indicador ms-auto">
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="filtro-option opcion-oferta">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input" type="checkbox" id="filtro-oferta" checked>
+                                    <label class="filtro-label ms-2" for="filtro-oferta">Oferta</label>
+                                    <span class="badge badge-oferta badge-indicador ms-auto">
+                                        <i class="fas fa-tag"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="filtro-option opcion-recomendacion">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input" type="checkbox" id="filtro-recomendacion">
+                                    <label class="filtro-label ms-2" for="filtro-recomendacion">Recomendación</label>
+                                    <span class="badge badge-recomendacion badge-indicador ms-auto">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="filtro-option opcion-categorias mt-3">
+                                <h6 class="filtro-title mb-2">Categorías</h6>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categoria-pokemon" checked>
+                                    <label class="filtro-label ms-2" for="categoria-pokemon">Pokémon</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categoria-magic" checked>
+                                    <label class="filtro-label ms-2" for="categoria-magic">Magic</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categoria-yugioh">
+                                    <label class="filtro-label ms-2" for="categoria-yugioh">Yu-Gi-Oh!</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categoria-coleccion">
+                                    <label class="filtro-label ms-2" for="categoria-coleccion">Colección</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filtro-footer">
+                            <button type="button" class="btn btn-secondary btn-sm btn-filtro">
+                                <i class="fas fa-undo me-1"></i>Limpiar
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm btn-filtro">
+                                <i class="fas fa-check me-1"></i>Aplicar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+               
+                <div class="contenedor-cartas">
+                    <div class="row g-4" id="contenedor-productos">
+                       
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card-producto">
+                                <div class="card-imagen-container">
+                                    <img src="../IMG/81M1c9MF4JL._AC_SX300_SY300_QL70_ML2_.jpg" 
+                                         class="card-imagen" 
+                                         alt="Sobre Pokémon">
+                                </div>
+                                <div class="card-contenido">
+                                    <h5 class="card-titulo">Sobre Pokémon Escarlata</h5>
+                                    <p class="card-descripcion">Sobre sellado de la colección Escarlata y Púrpura.</p>
+                                    
+                                    <div class="card-especificaciones">
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-box-open"></i>
+                                            <span>1 sobre sellado</span>
+                                        </div>
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-layer-group"></i>
+                                            <span>10 cartas aleatorias</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-precio-container">
+                                        <div class="card-precio">24.99€</div>
+                                        <button class="btn-agregar-carrito">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card-producto">
+                                <div class="card-imagen-container">
+                                    <img src="../IMG/card2.jpg" 
+                                         class="card-imagen" 
+                                         alt="Booster Box Magic">
+                                </div>
+                                <div class="card-contenido">
+                                    <h5 class="card-titulo">Booster Box MTG</h5>
+                                    <p class="card-descripcion">Caja completa de 36 sobres de Magic The Gathering.</p>
+                                    
+                                    <div class="card-especificaciones">
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-box"></i>
+                                            <span>1 caja sellada</span>
+                                        </div>
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-layer-group"></i>
+                                            <span>36 sobres cerrados</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-precio-container">
+                                        <div class="card-precio">149.99€</div>
+                                        <button class="btn-agregar-carrito">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card-producto">
+                                <div class="card-imagen-container">
+                                    <img src="../IMG/71rOeND3nsL._AC_SX300_SY300_QL70_ML2_.jpg" 
+                                         class="card-imagen" 
+                                         alt="Mazo Yu-Gi-Oh!">
+                                </div>
+                                <div class="card-contenido">
+                                    <h5 class="card-titulo">Mazo Inicial Yu-Gi-Oh!</h5>
+                                    <p class="card-descripcion">Mazo listo para jugar de 40 cartas.</p>
+                                    
+                                    <div class="card-especificaciones">
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-cards"></i>
+                                            <span>1 mazo completo</span>
+                                        </div>
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-layer-group"></i>
+                                            <span>40 cartas</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-precio-container">
+                                        <div class="card-precio-rebaja">
+                                            <div class="precio-rebajado">34.99€</div>
+                                            <div class="precio-original">39.99€</div>
+                                        </div>
+                                        <button class="btn-agregar-carrito">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card-producto">
+                                <div class="card-imagen-container">
+                                    <img src="../IMG/81XWwqsTekL._AC_SX300_SY300_QL70_ML2_.jpg" 
+                                         class="card-imagen" 
+                                         alt="Lote de Cartas">
+                                </div>
+                                <div class="card-contenido">
+                                    <h5 class="card-titulo">Lote de Cartas Pokémon</h5>
+                                    <p class="card-descripcion">Lote de 50 cartas variadas de diferentes colecciones.</p>
+                                    
+                                    <div class="card-especificaciones">
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-boxes"></i>
+                                            <span>Lote de 50 cartas</span>
+                                        </div>
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-random"></i>
+                                            <span>Variedad de colecciones</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-precio-container">
+                                        <div class="card-precio-rebaja">
+                                            <div class="precio-rebajado">89.99€</div>
+                                            <div class="precio-original">119.99€</div>
+                                        </div>
+                                        <button class="btn-agregar-carrito">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card-producto">
+                                <div class="card-imagen-container">
+                                    <img src="../IMG/card.jpg" 
+                                         class="card-imagen" 
+                                         alt="Sobre Magic Commander">
+                                </div>
+                                <div class="card-contenido">
+                                    <h5 class="card-titulo">Sobre Commander MTG</h5>
+                                    <p class="card-descripcion">Sobre de la edición Commander Legends.</p>
+                                    
+                                    <div class="card-especificaciones">
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-box-open"></i>
+                                            <span>1 sobre sellado</span>
+                                        </div>
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-crown"></i>
+                                            <span>Formato Commander</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-precio-container">
+                                        <div class="card-precio">19.99€</div>
+                                        <button class="btn-agregar-carrito">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card-producto">
+                                <div class="card-imagen-container">
+                                    <img src="../IMG/71yBTzHNJeL._AC_SY300_SX300_QL70_ML2_.jpg" 
+                                         class="card-imagen" 
+                                         alt="Elite Trainer Box">
+                                </div>
+                                <div class="card-contenido">
+                                    <h5 class="card-titulo">Elite Trainer Box</h5>
+                                    <p class="card-descripcion">Caja completa con 8 sobres y accesorios.</p>
+                                    
+                                    <div class="card-especificaciones">
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-box"></i>
+                                            <span>1 caja elite</span>
+                                        </div>
+                                        <div class="especificacion-item">
+                                            <i class="fas fa-box-open"></i>
+                                            <span>8 sobres de cartas</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-precio-container">
+                                        <div class="card-precio">64.99€</div>
+                                        <button class="btn-agregar-carrito">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-5 py-4 bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-3 text-dark">Nuestra ubicación</h5>
+                    <div class="map-responsive">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.489402402795!2d-5.996859488105838!3d37.401905733434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126bf7fc8e6361%3A0x8ac0fb6310472dcd!2sC.%20Calatrava%2C%20Casco%20Antiguo%2C%2041002%20Sevilla!5e0!3m2!1ses!2ses!4v1765200085376!5m2!1ses!2ses" 
+                                width="100%" 
+                                height="250" 
+                                style="border:0; border-radius: 8px;" 
+                                allowfullscreen 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 text-dark">
+                    <h5 class="mb-3 text-dark">Contáctanos</h5>
+                    <div class="contact-info mb-4">
+                        <p class="mb-2 text-dark">
+                            <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                            C. Calatrava, Casco Antiguo, 41002 Sevilla
+                        </p>
+                        <p class="mb-2 text-dark">
+                            <i class="fas fa-phone me-2 text-primary"></i>
+                            +34 123 456 789
+                        </p>
+                        <p class="mb-3 text-dark">
+                            <i class="fas fa-envelope me-2 text-primary"></i>
+                            info@ccard.com
+                        </p>
+                    </div>
+                    
+                    <h5 class="mb-3 text-dark">Síguenos</h5>
+                    <div class="social-icons">
+                        <a href="#" class="btn btn-outline-dark me-2 mb-2">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="#" class="btn btn-outline-dark me-2 mb-2">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="#" class="btn btn-outline-dark me-2 mb-2">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="mailto:info@ccard.com" class="btn btn-outline-dark mb-2">
+                            <i class="fas fa-envelope"></i> Correo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-dark">CCARD &copy; 2025 - Todos los derechos reservados</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
