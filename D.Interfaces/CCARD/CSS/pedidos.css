@@ -1,0 +1,234 @@
+body {
+    background-color: #f9fafbdc;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../IMG/f.elconfidencial.com_original_f14_d6c_f24_f14d6cf2455fc582859ce614569ec27d - Editada.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+.navbar {
+    background-color: #000000 !important;
+}
+
+#carrito {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+#Iniciosesion, #Registrarse {
+    background-color: #5f3bb9;
+    border-color: #5f3bb9;
+    color: white;
+}
+
+#Iniciosesion:hover, #Registrarse:hover {
+    background-color: #5f3bb9;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}
+
+main {
+    padding: 30px 0;
+}
+
+.footer {
+    background-color: whitesmoke !important;
+}
+
+.footer h5 {
+    color: #212529 !important;
+}
+
+.footer .contact-info p {
+    color: #212529;
+}
+
+.footer .social-icons .btn {
+    border-color: #212529;
+    color: #212529;
+}
+
+.footer .social-icons .btn:hover {
+    background-color: #8b0fae;
+    color: white;
+    border-color: #8b0fae;
+}
+
+/* Estilos simples */
+.contenido-pedidos {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Progreso simple */
+.progreso-pedido {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.paso {
+    text-align: center;
+    flex: 1;
+}
+
+.circulo {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #dee2e6;
+    margin: 0 auto 5px auto;
+}
+
+.paso-completado .circulo {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.paso-activo .circulo {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.paso p {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* Productos lista */
+.productos-lista {
+    margin-bottom: 15px;
+}
+
+.producto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.producto-item:last-child {
+    border-bottom: none;
+}
+
+.producto-item div:nth-child(1) {
+    flex: 2;
+}
+
+.producto-item div:nth-child(2) {
+    flex: 1;
+    text-align: center;
+}
+
+.producto-item div:nth-child(3) {
+    flex: 1;
+    text-align: right;
+}
+
+/* Productos historial */
+.producto-item-historial {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+/* Resumen */
+.resumen-pedido p {
+    margin: 5px 0;
+}
+
+/* Botones */
+.btn-outline-secondary {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    margin: 0 5px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .contenido-pedidos {
+        padding: 15px;
+    }
+    
+    .progreso-pedido {
+        flex-wrap: wrap;
+    }
+    
+    .paso {
+        flex: 0 0 50%;
+        margin-bottom: 15px;
+    }
+    
+    .producto-item {
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .producto-item div {
+        text-align: left !important;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .contenido-pedidos {
+        padding: 10px;
+    }
+    
+    .progreso-pedido {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .paso {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .circulo {
+        margin: 0;
+    }
+    
+    .producto-item-historial {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
