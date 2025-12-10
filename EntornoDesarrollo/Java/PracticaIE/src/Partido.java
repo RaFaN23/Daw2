@@ -26,7 +26,7 @@ public class Partido {
                 equipo1.getNombreEquipo(), puntuacion1));
         resultado.append(String.format("Puntuación %s: %.2f\n",
                 equipo2.getNombreEquipo(), puntuacion2));
-        resultado.append(String.format("⚽ GANADOR: %s\n", ganador.getNombreEquipo()));
+        resultado.append(String.format(" GANADOR: %s\n", ganador.getNombreEquipo()));
         resultado.append("Jugadores del equipo ganador:\n");
 
         for (JugadorInazuma jugador : ganador.getMiembros().values()) {
