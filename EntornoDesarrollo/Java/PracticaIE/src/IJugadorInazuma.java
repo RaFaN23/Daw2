@@ -1,16 +1,18 @@
 public interface IJugadorInazuma {
+
     String getNombre();
-    void setNombre(String nombre);
     String getAlias();
     boolean isEsTitular();
-    void setEsTitular(boolean esTitular);
     String getPosicion();
-    void setPosicion(String posicion);
     String getEquipo();
-    void setEquipo(String equipo);
     double getPoder();
+
+
+    void setNombre(String nombre);
+    void setEsTitular(boolean esTitular);
+    void setPosicion(String posicion);
+    void setEquipo(String equipo);
     void setPoder(double poder);
 
-    @Override
     String toString();
 }

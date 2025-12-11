@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        // Crear jugadores
+
         JugadorInazuma mark = new JugadorInazuma("Mark Evans", "El Guardián Legendario",
                 true, "portero", "Raimon", 8.5);
         JugadorInazuma axel = new JugadorInazuma("Axel Blaze", "El Delantero de Fuego",
@@ -10,7 +10,7 @@ public class Main {
         JugadorInazuma erik = new JugadorInazuma("Erik Eagle", "El Capitán Águila",
                 true, "defensa", "Royal Academy", 8.0);
 
-        // Crear equipos
+
         Equipo raimon = new Equipo("Raimon");
         raimon.agregarMiembro(mark);
         raimon.agregarMiembro(axel);
@@ -19,7 +19,7 @@ public class Main {
         royal.agregarMiembro(jude);
         royal.agregarMiembro(erik);
 
-        // Mostrar información
+
         System.out.println("=== JUGADORES ===");
         System.out.println(mark);
         System.out.println(axel);
@@ -35,7 +35,7 @@ public class Main {
         System.out.printf("Poder medio de Royal Academy: %.2f\n", royal.poderDelEquipo());
         System.out.println();
 
-        // Simular partido
+
         System.out.println("=== SIMULACIÓN DE PARTIDO ===");
         Partido partido = new Partido(raimon, royal);
         System.out.println(partido.simularEnfrentamiento());
