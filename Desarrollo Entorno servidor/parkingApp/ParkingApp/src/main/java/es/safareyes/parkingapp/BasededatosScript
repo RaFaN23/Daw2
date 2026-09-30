@@ -1,0 +1,443 @@
+-- =========================================================
+-- CREACIÓN DE TABLAS parkingapp
+-- =========================================================
+
+CREATE TABLE plaza(
+    id INTEGER NOT NULL,
+    estado VARCHAR(255) NOT NULL,
+    numero INTEGER NOT NULL,
+    planta INTEGER NOT NULL,
+    tipo VARCHAR(255) NOT NULL
+);
+
+ALTER TABLE plaza ADD PRIMARY KEY(id);
+
+-- El número de plaza debe ser único porque tickets lo referencia
+ALTER TABLE plaza
+ADD CONSTRAINT plaza_numero_unique UNIQUE(numero);
+
+
+CREATE TABLE tickets(
+    id INTEGER NOT NULL,
+    matricula VARCHAR(255) NOT NULL,
+    hora_entrada TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+    hora_salida TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+    estado VARCHAR(255) NOT NULL,
+    minutos INTEGER NOT NULL,
+    descuento DECIMAL(8, 2) NOT NULL,
+    importe_descuento DECIMAL(8, 2) NOT NULL,
+    importe DECIMAL(8, 2) NOT NULL,
+    numero_plaza INTEGER NOT NULL,
+    id_tarifa INTEGER NOT NULL,
+    id_abonado INTEGER NOT NULL,
+    id_promocion INTEGER NOT NULL
+);
+
+ALTER TABLE tickets ADD PRIMARY KEY(id);
+
+
+CREATE TABLE tarifa(
+    id INTEGER NOT NULL,
+    min_cortesia INTEGER NOT NULL,
+    precio_por_min DECIMAL(8, 2) NOT NULL,
+    tope_maximo DECIMAL(8, 2) NOT NULL,
+    fecha_aplica DATE NOT NULL
+);
+
+ALTER TABLE tarifa ADD PRIMARY KEY(id);
+
+
+CREATE TABLE promocion(
+    id INTEGER NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    tipo VARCHAR(255) NOT NULL,
+    min_descuento INTEGER NOT NULL
+);
+
+ALTER TABLE promocion ADD PRIMARY KEY(id);
+
+
+CREATE TABLE abonado(
+    id INTEGER NOT NULL,
+    matricula VARCHAR(255) NOT NULL,
+    fecha_ini DATE NOT NULL,
+    fecha_fin DATE NOT NULL
+);
+
+ALTER TABLE abonado ADD PRIMARY KEY(id);
+
+
+CREATE TABLE usuario(
+    id INTEGER NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    contraseña VARCHAR(255) NOT NULL
+);
+
+ALTER TABLE usuario ADD PRIMARY KEY(id);
+
+
+CREATE TABLE abonado_usuario(
+    id INTEGER NOT NULL,
+    id_abonado INTEGER NOT NULL,
+    id_usuario INTEGER NOT NULL
+);
+
+ALTER TABLE abonado_usuario ADD PRIMARY KEY(id);
+
+
+-- =========================================================
+-- CLAVES FORÁNEAS
+-- =========================================================
+
+ALTER TABLE tickets
+ADD CONSTRAINT tickets_numero_plaza_foreign
+FOREIGN KEY(numero_plaza)
+REFERENCES plaza(numero);
+
+
+ALTER TABLE tickets
+ADD CONSTRAINT tickets_id_abonado_foreign
+FOREIGN KEY(id_abonado)
+REFERENCES abonado(id);
+
+
+ALTER TABLE tickets
+ADD CONSTRAINT tickets_id_tarifa_foreign
+FOREIGN KEY(id_tarifa)
+REFERENCES tarifa(id);
+
+
+ALTER TABLE tickets
+ADD CONSTRAINT tickets_id_promocion_foreign
+FOREIGN KEY(id_promocion)
+REFERENCES promocion(id);
+
+
+ALTER TABLE abonado_usuario
+ADD CONSTRAINT abonado_usuario_id_usuario_foreign
+FOREIGN KEY(id_usuario)
+REFERENCES usuario(id);
+
+
+ALTER TABLE abonado_usuario
+ADD CONSTRAINT abonado_usuario_id_abonado_foreign
+FOREIGN KEY(id_abonado)
+REFERENCES abonado(id);
+
+
+-- =========================================================
+-- DATOS: PLAZA
+-- =========================================================
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (1, 'libre', 1, -1, 'normal');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (2, 'ocupada', 2, -1, 'normal');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (3, 'libre', 3, -1, 'movilidad reducida');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (4, 'bloqueada', 4, -1, 'normal');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (5, 'libre', 5, -1, 'cargador electrico');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (6, 'ocupada', 6, -2, 'normal');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (7, 'libre', 7, -2, 'normal');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (8, 'libre', 8, -2, 'movilidad reducida');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (9, 'bloqueada', 9, -3, 'normal');
+
+INSERT INTO plaza (id, estado, numero, planta, tipo)
+VALUES (10, 'libre', 10, -3, 'cargador electrico');
+
+
+-- =========================================================
+-- DATOS: TARIFA
+-- =========================================================
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (1, 10, 0.05, 20.00, '2026-01-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (2, 10, 0.06, 22.00, '2026-02-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (3, 15, 0.05, 18.00, '2026-03-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (4, 15, 0.07, 25.00, '2026-04-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (5, 20, 0.05, 20.00, '2026-05-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (6, 20, 0.06, 23.00, '2026-06-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (7, 10, 0.08, 30.00, '2026-07-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (8, 15, 0.08, 28.00, '2026-08-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (9, 20, 0.07, 25.00, '2026-09-01');
+
+INSERT INTO tarifa
+(id, min_cortesia, precio_por_min, tope_maximo, fecha_aplica)
+VALUES (10, 30, 0.05, 20.00, '2026-10-01');
+
+
+-- =========================================================
+-- DATOS: PROMOCION
+-- =========================================================
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (1, 'Cliente frecuente', 'porcentaje', 5);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (2, 'Fin de semana', 'porcentaje', 10);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (3, 'Estudiantes', 'porcentaje', 15);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (4, 'Navidad', 'porcentaje', 20);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (5, 'Verano', 'porcentaje', 10);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (6, 'Festivo', 'porcentaje', 15);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (7, 'Promocion mensual', 'porcentaje', 5);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (8, 'Cliente nuevo', 'porcentaje', 10);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (9, 'Noche', 'porcentaje', 20);
+
+INSERT INTO promocion (id, nombre, tipo, min_descuento)
+VALUES (10, 'Evento especial', 'porcentaje', 25);
+
+
+-- =========================================================
+-- DATOS: ABONADO
+-- =========================================================
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (1, '1234ABC', '2026-01-01', '2026-12-31');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (2, '2345BCD', '2026-01-01', '2026-06-30');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (3, '3456CDE', '2026-02-01', '2027-01-31');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (4, '4567DEF', '2026-03-01', '2026-12-31');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (5, '5678EFG', '2026-04-01', '2027-03-31');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (6, '6789FGH', '2026-05-01', '2026-12-31');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (7, '7890GHI', '2026-06-01', '2027-05-31');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (8, '8901HIJ', '2026-07-01', '2027-06-30');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (9, '9012IJK', '2026-08-01', '2027-07-31');
+
+INSERT INTO abonado (id, matricula, fecha_ini, fecha_fin)
+VALUES (10, '0123JKL', '2026-09-01', '2027-08-31');
+
+
+-- =========================================================
+-- DATOS: USUARIO
+-- =========================================================
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (1, 'Javier', 'clave123');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (2, 'Carlos', 'clave456');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (3, 'Ana', 'clave789');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (4, 'Lucia', 'clave111');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (5, 'Miguel', 'clave222');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (6, 'Laura', 'clave333');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (7, 'David', 'clave444');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (8, 'Marta', 'clave555');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (9, 'Pablo', 'clave666');
+
+INSERT INTO usuario (id, nombre, contraseña)
+VALUES (10, 'Sara', 'clave777');
+
+
+-- =========================================================
+-- DATOS: ABONADO_USUARIO
+-- =========================================================
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (1, 1, 1);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (2, 2, 2);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (3, 3, 3);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (4, 4, 4);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (5, 5, 5);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (6, 6, 6);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (7, 7, 7);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (8, 8, 8);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (9, 9, 9);
+
+INSERT INTO abonado_usuario (id, id_abonado, id_usuario)
+VALUES (10, 10, 10);
+
+
+-- =========================================================
+-- DATOS: TICKETS
+-- =========================================================
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(1, '1234ABC', '2026-09-28 08:00:00', '2026-09-28 09:00:00',
+ 'cerrado', 60, 5.00, 0.15, 2.85, 1, 1, 1, 1);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(2, '2345BCD', '2026-09-28 09:15:00', '2026-09-28 10:45:00',
+ 'cerrado', 90, 10.00, 0.54, 4.86, 2, 2, 2, 2);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(3, '3456CDE', '2026-09-28 11:00:00', '2026-09-28 12:30:00',
+ 'cerrado', 90, 15.00, 0.64, 3.86, 3, 3, 3, 3);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(4, '4567DEF', '2026-09-28 12:00:00', '2026-09-28 14:00:00',
+ 'cerrado', 120, 20.00, 1.68, 6.72, 4, 4, 4, 4);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(5, '5678EFG', '2026-09-28 14:30:00', '2026-09-28 15:30:00',
+ 'cerrado', 60, 10.00, 0.30, 2.70, 5, 5, 5, 5);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(6, '6789FGH', '2026-09-28 16:00:00', '2026-09-28 18:00:00',
+ 'cerrado', 120, 15.00, 1.22, 6.78, 6, 6, 6, 6);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(7, '7890GHI', '2026-09-28 18:15:00', '2026-09-28 19:15:00',
+ 'cerrado', 60, 5.00, 0.24, 4.56, 7, 7, 7, 7);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(8, '8901HIJ', '2026-09-28 19:30:00', '2026-09-28 21:00:00',
+ 'cerrado', 90, 10.00, 0.72, 6.48, 8, 8, 8, 8);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(9, '9012IJK', '2026-09-28 21:15:00', '2026-09-28 23:15:00',
+ 'cerrado', 120, 20.00, 1.68, 6.72, 9, 9, 9, 9);
+
+INSERT INTO tickets
+(id, matricula, hora_entrada, hora_salida,
+ estado, minutos, descuento, importe_descuento,
+ importe, numero_plaza, id_tarifa, id_abonado, id_promocion)
+VALUES
+(10, '0123JKL', '2026-09-28 22:00:00', '2026-09-28 23:00:00',
+ 'cerrado', 60, 25.00, 0.75, 2.25, 10, 10, 10, 10);
+
+
+-- =========================================================
+-- COMPROBACIÓN
+-- =========================================================
+
+SELECT * FROM plaza;
+SELECT * FROM tickets;
+SELECT * FROM tarifa;
+SELECT * FROM promocion;
+SELECT * FROM abonado;
+SELECT * FROM usuario;
+SELECT * FROM abonado_usuario;
