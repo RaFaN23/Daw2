@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuarios, Integer> {
 
-    @Query("SELECT u FROM Usuarios u WHERE u.Contrasenya LIKE %:contrasenya%")
+    @Query("SELECT u FROM Usuarios u WHERE u.contrasenya LIKE %:contrasenya%")
     List<Usuarios> buscarPorContrasenya(@Param("contrasenya") String contrasenya);
 }

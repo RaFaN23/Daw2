@@ -1,6 +1,5 @@
 package es.safareyes.parkingapp.Modelos;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,12 +7,12 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "tarifa",schema = "parkingapp")
-@Getter @Setter
+@Table(name = "tarifa", schema = "parkingapp")
+@Getter
+@Setter
 @NoArgsConstructor
 public class Tarifa {
 
@@ -22,16 +21,18 @@ public class Tarifa {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "min_cortesia",nullable = false)
-    private Integer Min_cortesia;
+    @Column(name = "min_cortesia", nullable = false)
+    private Integer minCortesia;
 
-    @Column(name = "precio_por_min")
-    private BigDecimal Precio_Por_Min;
+    @Column(name = "precio_por_min", nullable = false)
+    private BigDecimal precioPorMin;
 
-    @Column(name = "tope_maximo")
-    private BigDecimal Tope_maximo;
+    @Column(name = "tope_maximo", nullable = false)
+    private BigDecimal topeMaximo;
 
-    @Column(name = "fecha_aplica")
-    private LocalDate Fecha_aplica;
+    @Column(name = "fecha_aplica", nullable = false)
+    private LocalDate fechaAplica;
 
+    @OneToMany(mappedBy = "tarifa", fetch = FetchType.LAZY)
+    private List<Tickets> tickets;
 }
