@@ -17,8 +17,7 @@ public class buscarUsuariosPorContrasenya {
     @Test
     void buscarUsuariosPorContrasenya() {
 
-        List<Usuarios> usuarios =
-                usuarioService.buscarPorContrasenya("clave1");
+        List<Usuarios> usuarios = usuarioService.buscarPorContrasenya("clave1");
 
         System.out.println("Usuarios encontrados: " + usuarios.size());
 
