@@ -23,10 +23,10 @@ public class Tickets {
     @Column(name = "matricula", nullable = false)
     private String matricula;
 
-    @Column(name = "hora_entrada", nullable = false)
+    @Column(name = "hora_entrada")
     private LocalDateTime horaEntrada;
 
-    @Column(name = "hora_salida", nullable = false)
+    @Column(name = "hora_salida")
     private LocalDateTime horaSalida;
 
     @Column(name = "estado", nullable = false)

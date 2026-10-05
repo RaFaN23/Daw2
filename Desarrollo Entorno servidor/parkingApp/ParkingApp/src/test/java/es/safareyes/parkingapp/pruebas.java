@@ -3,6 +3,8 @@ import es.safareyes.parkingapp.Modelos.Plaza;
 import es.safareyes.parkingapp.Modelos.Tarifa;
 import es.safareyes.parkingapp.Repositorio.PlazaRepositorio;
 import es.safareyes.parkingapp.Repositorio.TarifaRepositorio;
+import es.safareyes.parkingapp.Repositorio.TicketsRepositorio;
+import es.safareyes.parkingapp.dtos.importeTicket;
 import es.safareyes.parkingapp.dtos.plazasLibres;
 import es.safareyes.parkingapp.dtos.tarifasVigentes;
 import org.junit.jupiter.api.Test;
@@ -49,23 +51,35 @@ public class pruebas {
     }
 
 
-
     @Autowired
     private TarifaRepositorio tarifaRepositorio;
+
     @Test
-    void tarifasVigentes(){
+    void tarifaVigente() {
 
-        List<tarifasVigentes> tarifas = tarifaRepositorio.tarifasVigentes();
+        tarifasVigentes tarifa = tarifaRepositorio.tarifaVigente();
 
-        System.out.println("Tarifas vigentes: " + tarifas.size());
+        System.out.println("Tarifa vigente:");
+        System.out.println("ID: " + tarifa.getIdTarifa());
+        System.out.println("Minutos cortesía: " + tarifa.getMinCortesia());
+        System.out.println("Precio por minuto: " + tarifa.getPrecioPorMin());
+        System.out.println("Tope máximo: " + tarifa.getTopeMaximo());
+        System.out.println("Fecha de aplicación: " + tarifa.getFechaAplica());
+    }
 
-        for (tarifasVigentes tarifa : tarifas) {
 
-            System.out.println(
-                    "Tarifa: " + tarifa.getIdTarifa() +
-                            " | Matrícula: " + tarifa.getMatricula() +
-                            " | Usuario: " + tarifa.getNombreUsuario()
-            );
-        }
+
+    @Autowired
+    private TicketsRepositorio ticketsRepositorio;
+
+    @Test
+    void importeTicket() {
+
+        importeTicket ticket =
+                ticketsRepositorio.obtenerImporteActual("1234ABC");
+
+        System.out.println("Matrícula: " + ticket.getMatricula());
+        System.out.println("Minutos: " + ticket.getMinutos());
+        System.out.println("Importe actual: " + ticket.getImporte() + " €");
     }
 }
