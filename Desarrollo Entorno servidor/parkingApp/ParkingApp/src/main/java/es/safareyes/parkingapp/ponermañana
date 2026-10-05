@@ -1,0 +1,18 @@
+SELECT id, matricula, estado, hora_entrada, hora_salida
+FROM parkingapp.tickets
+WHERE matricula = '1234ABC';
+
+
+UPDATE parkingapp.tickets
+SET estado = 'abierto',
+    hora_salida = NULL
+WHERE matricula = '1234ABC';
+
+
+	ALTER TABLE parkingapp.tickets
+	ALTER COLUMN hora_salida DROP NOT NULL;
+
+
+	SELECT id, matricula, estado, hora_entrada, hora_salida
+FROM parkingapp.tickets
+WHERE matricula = '1234ABC';
