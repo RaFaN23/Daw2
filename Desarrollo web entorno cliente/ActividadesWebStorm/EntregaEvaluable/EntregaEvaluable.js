@@ -119,6 +119,10 @@ function ejercicio3() {
         alumnos[nombre] = nota;
 
         alert("Alumno añadido correctamente.");
+        console.log("Alumnos registrados:");
+        for (let alumno in alumnos) {
+            console.log(alumno + ": " + alumnos[alumno]);
+        }
     }
 }
 
@@ -132,7 +136,7 @@ function ejercicio4() {
         }
     }
     for (let i = 0; i <= 30; i++) {
-        if (i % 3 == 0) {
+        if (i % 3 == 0) {   
             multiplos3.push(i);
         }
     }
