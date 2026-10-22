@@ -1,0 +1,35 @@
+<h2>Fecha y hora actual</h2>
+
+<p>{{ formatearFecha(fechaActual()) }}</p>
+
+<div>
+  <label>
+    <input type="checkbox" [checked]="formato24()" (change)="cambiarFormato($event)">
+    Formato de 24 horas
+  </label>
+</div>
+
+<div>
+  <label>
+    <input type="checkbox" [checked]="mostrarSegundoReloj()" (change)="cambiarSegundoReloj($event)">
+    Mostrar segundo reloj
+  </label>
+</div>
+
+@if (mostrarSegundoReloj()) {
+  <div>
+    <label>
+      Selecciona una ciudad:
+      <select (change)="cambiarCiudad($event)">
+        @for (ciudad of ciudades; track ciudad.zona) {
+          <option [value]="ciudad.zona" [selected]="ciudad.zona === ciudadSeleccionada()">
+            {{ ciudad.nombre }}
+          </option>
+        }
+      </select>
+    </label>
+
+    <h3>Hora en {{ nombreCiudad() }}</h3>
+    <p>{{ formatearFecha(fechaActual(), ciudadSeleccionada()) }}</p>
+  </div>
+}

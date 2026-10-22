@@ -1,0 +1,25 @@
+<div class="contenedor">
+
+  <h2>Semáforo</h2>
+
+  <div class="semaforo">
+
+    <div class="luz roja"
+         [class.encendida]="luzActiva === 'roja'">
+    </div>
+
+    <div class="luz ambar"
+         [class.encendida]="luzActiva === 'ambar'">
+    </div>
+
+    <div class="luz verde"
+         [class.encendida]="luzActiva === 'verde'">
+    </div>
+
+  </div>
+
+  <button (click)="detenerOReanudar()">
+    {{ pausado ? 'Reanudar' : 'Detener' }}
+  </button>
+
+</div>
