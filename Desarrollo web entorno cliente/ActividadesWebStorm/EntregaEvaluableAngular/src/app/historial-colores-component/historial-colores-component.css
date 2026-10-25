@@ -1,0 +1,43 @@
+h2 {
+  color: darkblue;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+label {
+  margin: 0 10px;
+}
+
+button {
+  padding: 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.recuadro {
+  width: 250px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #333;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.opcion {
+  border: 2px solid #999;
+  border-radius: 5px;
+}
+
+.seleccionado {
+  border-color: black;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}

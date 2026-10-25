@@ -7,7 +7,6 @@ import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 })
 export class FechaHoraComponent implements OnInit, OnDestroy {
 
-  // Se usan signals para que la vista se actualice cada segundo
   fechaActual = signal(new Date());
   formato24 = signal(true);
   mostrarSegundoReloj = signal(false);
@@ -48,9 +47,6 @@ export class FechaHoraComponent implements OnInit, OnDestroy {
     const seleccion = evento.target as HTMLSelectElement;
     this.ciudadSeleccionada.set(seleccion.value);
   }
-
-  // Devuelve la fecha con formato dd-mm-yyyy hh:mm:ss (y AM/PM si es formato 12h).
-  // Si se pasa una zona horaria, la hora se calcula para esa zona.
   formatearFecha(fecha: Date, zona?: string): string {
     const opciones: Intl.DateTimeFormatOptions = {
       day: '2-digit',

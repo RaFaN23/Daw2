@@ -1,0 +1,33 @@
+<h2>Cookies</h2>
+
+@if (nombre()) {
+  <p>
+    Hola, <strong>{{ nombre() }}</strong>.
+    Esta es tu visita número <strong>{{ visitas() }}</strong>.
+    @if (ultimaVisita()) {
+      Tu última visita fue el <strong>{{ ultimaVisita() }}</strong>.
+    } @else {
+      Es tu primera visita.
+    }
+  </p>
+} @else {
+  <div>
+    <label for="nombreCookie">¿Cómo te llamas?</label>
+    <input type="text" id="nombreCookie" [(ngModel)]="nombreEscrito">
+    <button (click)="guardarNombre()">Guardar</button>
+  </div>
+}
+
+<div>
+  Tema:
+  <button [class.seleccionado]="tema() === 'claro'" (click)="elegirTema('claro')">Claro</button>
+  <button [class.seleccionado]="tema() === 'oscuro'" (click)="elegirTema('oscuro')">Oscuro</button>
+</div>
+
+<div>
+  <button (click)="borrar()">Eliminar cookies</button>
+</div>
+
+@if (mensaje()) {
+  <p class="error">{{ mensaje() }}</p>
+}

@@ -1,0 +1,22 @@
+<h2>Interacción con ventana hija</h2>
+
+<div>
+  <button (click)="abrir()" [disabled]="abierta()">Abrir ventana</button>
+</div>
+
+@if (abierta()) {
+  <div class="mando">
+    <button class="arriba" (click)="mover(0, -desplazamiento)">Arriba</button>
+    <button class="izquierda" (click)="mover(-desplazamiento, 0)">Izquierda</button>
+    <button class="derecha" (click)="mover(desplazamiento, 0)">Derecha</button>
+    <button class="abajo" (click)="mover(0, desplazamiento)">Abajo</button>
+  </div>
+
+  <div>
+    <button (click)="cerrar()">Cerrar ventana</button>
+  </div>
+}
+
+@if (mensaje()) {
+  <p class="error">{{ mensaje() }}</p>
+}

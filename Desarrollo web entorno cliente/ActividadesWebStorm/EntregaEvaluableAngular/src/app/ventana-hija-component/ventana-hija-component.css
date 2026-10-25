@@ -1,0 +1,33 @@
+h2 {
+  color: darkblue;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Botones de dirección colocados en cruz */
+.mando {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-areas:
+    ".         arriba ."
+    "izquierda .      derecha"
+    ".         abajo  .";
+  gap: 5px;
+}
+
+.arriba { grid-area: arriba; }
+.abajo { grid-area: abajo; }
+.izquierda { grid-area: izquierda; }
+.derecha { grid-area: derecha; }
+
+.error {
+  color: red;
+  font-weight: bold;
+}

@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Tema oscuro (se activa desde los componentes de Cookies y localStorage) */
+body.oscuro {
+  background-color: #222;
+  color: #eee;
+}
+
+body.oscuro h2 {
+  color: lightblue;
+}
