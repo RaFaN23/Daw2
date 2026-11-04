@@ -94,8 +94,6 @@ public class pruebas {
     }
 
 
-
-    // GET /api/v1/tickets  (ADMIN / OPERADOR -> idUsuario = null)
     @Test
     void listarTicketsAdmin() {
 
@@ -118,7 +116,6 @@ public class pruebas {
         }
     }
 
-    // GET /api/v1/tickets  (ABONADO -> solo los suyos, usuario 1)
     @Test
     void listarTicketsAbonado() {
 
@@ -139,11 +136,9 @@ public class pruebas {
 
 
 
-    // GET /api/v1/tickets/{id}
     @Test
     void detalleTicket() {
 
-        // ADMIN / OPERADOR: ve cualquier ticket
         detalleTicket t = ticketsRepositorio.detalleTicket(3, null).orElse(null);
 
         if (t == null) {
@@ -161,7 +156,6 @@ public class pruebas {
         System.out.println("Descuento: " + t.getDescuento() + " | Importe descontado: " + t.getImporteDescuento() + " €");
         System.out.println("Importe final: " + t.getImporte() + " €");
 
-        // ABONADO (propio): el usuario 1 NO debería ver el ticket 3
         System.out.println("¿Usuario 1 ve el ticket 3? "
                 + ticketsRepositorio.detalleTicket(3, 1).isPresent());
     }
@@ -171,7 +165,6 @@ public class pruebas {
     @Autowired
     private PromocionRepositorio promocionRepositorio;
 
-    // GET /api/v1/promociones
     @Test
     void catalogoPromociones() {
 
@@ -191,7 +184,6 @@ public class pruebas {
 
 
 
-    // GET /api/v1/informes/recaudacion?desde=&hasta=
     @Test
     void recaudacionPorDia() {
 
@@ -212,7 +204,6 @@ public class pruebas {
 
 
 
-    // GET /api/v1/informes/ocupacion
     @Test
     void ocupacionPorPlanta() {
 
