@@ -35,8 +35,7 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
 
 
 
-    // GET /api/v1/informes/ocupacion
-    // Ocupación por planta y estancia media (minutos de los tickets cerrados)
+
     @Query(
             nativeQuery = true,
             value = "SELECT p.planta, " +

@@ -38,10 +38,7 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
     importeTicket obtenerImporteActual(String matricula);
 
 
-    // GET /api/v1/tickets
-    // Listado paginado con filtros (todos opcionales, null = sin filtrar).
-    // idUsuario = null -> ADMIN / OPERADOR (ven todos)
-    // idUsuario = X    -> ABONADO (solo ve los tickets de sus abonos)
+
     @Query(
             value = "SELECT new es.safareyes.parkingapp.dtos.listadoTickets(" +
                     "t.id, t.matricula, t.horaEntrada, t.horaSalida, " +
@@ -74,10 +71,7 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
             Pageable pageable);
 
 
-    // GET /api/v1/tickets/{id}
-    // Detalle con descuentos aplicados.
-    // idUsuario = null -> ADMIN / OPERADOR
-    // idUsuario = X    -> ABONADO (solo si el ticket es suyo, si no devuelve vacío)
+
     @Query(
             "SELECT new es.safareyes.parkingapp.dtos.detalleTicket(" +
                     "t.id, t.matricula, t.horaEntrada, t.horaSalida, t.estado, t.minutos, " +
@@ -99,8 +93,7 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
             @Param("idUsuario") Integer idUsuario);
 
 
-    // GET /api/v1/informes/recaudacion?desde=&hasta=
-    // Recaudación por día (solo tickets cerrados, por fecha de salida)
+
     @Query(
             nativeQuery = true,
             value = "SELECT CAST(t.hora_salida AS DATE) AS dia, " +

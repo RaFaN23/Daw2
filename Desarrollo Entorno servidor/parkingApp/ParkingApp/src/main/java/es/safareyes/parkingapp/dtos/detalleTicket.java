@@ -26,12 +26,12 @@ public class detalleTicket {
 
     private Integer planta;
 
-    // Tarifa aplicada
+
     private Integer minCortesia;
 
     private BigDecimal precioPorMin;
 
-    // Promoción / descuento aplicado
+
     private String nombrePromocion;
 
     private String tipoPromocion;

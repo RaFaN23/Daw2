@@ -17,6 +17,6 @@ public class ocupacionPlanta {
 
     private BigDecimal porcentajeOcupacion;
 
-    // media de minutos de los tickets cerrados de esa planta
+
     private BigDecimal estanciaMedia;
 }

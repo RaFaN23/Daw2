@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public interface PromocionRepositorio extends JpaRepository<Promocion,Integer> {
 
-    // GET /api/v1/promociones
-    // Catálogo de promociones (sin DTO, devuelve la entidad)
+
     @Query(
             nativeQuery = true,
             value = "SELECT p.* " +
