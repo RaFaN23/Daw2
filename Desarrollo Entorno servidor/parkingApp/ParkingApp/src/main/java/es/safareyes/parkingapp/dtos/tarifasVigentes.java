@@ -1,11 +1,13 @@
 package es.safareyes.parkingapp.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
 public class tarifasVigentes {
 
     private Integer idTarifa;
@@ -14,17 +16,5 @@ public class tarifasVigentes {
     private BigDecimal topeMaximo;
     private LocalDate fechaAplica;
 
-    public tarifasVigentes(
-            Integer idTarifa,
-            Integer minCortesia,
-            BigDecimal precioPorMin,
-            BigDecimal topeMaximo,
-            LocalDate fechaAplica) {
 
-        this.idTarifa = idTarifa;
-        this.minCortesia = minCortesia;
-        this.precioPorMin = precioPorMin;
-        this.topeMaximo = topeMaximo;
-        this.fechaAplica = fechaAplica;
-    }
 }
