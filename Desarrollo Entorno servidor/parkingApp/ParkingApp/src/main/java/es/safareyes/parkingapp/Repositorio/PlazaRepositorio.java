@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
 
-    //Primero Ejercicio
+    //Plazas libres por planta y tipo
     @Query("SELECT p FROM Plaza p " +
             "WHERE (:planta IS NULL OR p.planta = :planta) " +
             "AND (:tipo IS NULL OR p.tipo = :tipo) " +
@@ -33,7 +33,7 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
 
 
 
-    //Segundo Ejercicio
+    //plazas libres por planta y tipo
     @Query("SELECT new es.safareyes.parkingapp.dtos.plazasLibres(" +
             "p.planta, p.tipo, COUNT(p)) " +
             "FROM Plaza p " +

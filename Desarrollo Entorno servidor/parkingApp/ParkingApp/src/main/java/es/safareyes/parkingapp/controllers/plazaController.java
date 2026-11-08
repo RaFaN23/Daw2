@@ -19,7 +19,7 @@ public class plazaController {
     @Autowired
     private plazaService plazaService;
 
-
+    //tener todas las plazas con filtros
     @GetMapping
     public Page<PlazaDTO> listar(
             @RequestParam(required = false) Integer planta,
@@ -30,7 +30,7 @@ public class plazaController {
     }
 
 
-
+    //plazas libres por planta y tipo
     @GetMapping("disponibilidad")
     public List<plazasLibres> disponibilidad(
             @RequestParam(required = false) Integer planta,

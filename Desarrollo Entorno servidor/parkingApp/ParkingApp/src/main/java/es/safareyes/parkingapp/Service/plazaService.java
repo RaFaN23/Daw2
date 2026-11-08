@@ -22,14 +22,14 @@ public class plazaService {
     private PlazaMapper plazaMapper;
 
 
-
+    // Obtener todas las plazas con filtros
     public Page<PlazaDTO> listar(Integer planta, String tipo, String estado, Pageable pageable) {
         return plazaRepositorio.buscarPlazasFiltradas(planta, tipo, estado, pageable)
                 .map(plaza -> plazaMapper.toDTO(plaza));
     }
 
 
-
+    // Obtener todas las plazas libres por planta y tipo
     public List<plazasLibres> listarLibres(Integer planta, String tipo) {
         return plazaRepositorio.plazasLibresPorPlantas(planta, tipo);
     }
