@@ -2,11 +2,15 @@ package es.safareyes.parkingapp.Service;
 
 import es.safareyes.parkingapp.Repositorio.PlazaRepositorio;
 import es.safareyes.parkingapp.converter.PlazaMapper;
+import es.safareyes.parkingapp.converter.plazaLibresMapper;
 import es.safareyes.parkingapp.dtos.PlazaDTO;
+import es.safareyes.parkingapp.dtos.plazasLibres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class plazaService {
@@ -24,4 +28,9 @@ public class plazaService {
                 .map(plaza -> plazaMapper.toDTO(plaza));
     }
 
+
+
+    public List<plazasLibres> listarLibres(Integer planta, String tipo) {
+        return plazaRepositorio.plazasLibresPorPlantas(planta, tipo);
+    }
 }

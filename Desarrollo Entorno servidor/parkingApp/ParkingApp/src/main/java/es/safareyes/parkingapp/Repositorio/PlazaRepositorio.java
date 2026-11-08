@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
 
-
+    //Primero Ejercicio
     @Query("SELECT p FROM Plaza p " +
             "WHERE (:planta IS NULL OR p.planta = :planta) " +
             "AND (:tipo IS NULL OR p.tipo = :tipo) " +
@@ -33,17 +33,18 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
 
 
 
-
-    @Query(
-            nativeQuery = true,
-            value = "SELECT p.planta, p.tipo, " +
-                    "COUNT(*) AS plazas_libres " +
-                    "FROM parkingapp.plaza p " +
-                    "WHERE p.estado = 'libre' " +
-                    "GROUP BY p.planta, p.tipo " +
-                    "ORDER BY p.planta, p.tipo"
-    )
-    List<plazasLibres> plazasLibresPorPlantas();
+    //Segundo Ejercicio
+    @Query("SELECT new es.safareyes.parkingapp.dtos.plazasLibres(" +
+            "p.planta, p.tipo, COUNT(p)) " +
+            "FROM Plaza p " +
+            "WHERE p.estado = 'libre' " +
+            "AND (:planta IS NULL OR p.planta = :planta) " +
+            "AND (:tipo IS NULL OR p.tipo = :tipo) " +
+            "GROUP BY p.planta, p.tipo " +
+            "ORDER BY p.planta, p.tipo")
+    List<plazasLibres> plazasLibresPorPlantas(
+            @Param("planta") Integer planta,
+            @Param("tipo") String tipo);
 
 
 

@@ -20,4 +20,6 @@ public interface PlazaMapper {
 
     List<Plaza> toEntity(List<PlazaDTO> listDTOs);
 
+
+
 }
