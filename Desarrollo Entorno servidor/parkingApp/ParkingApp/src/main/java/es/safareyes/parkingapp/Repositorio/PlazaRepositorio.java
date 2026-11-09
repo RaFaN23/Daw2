@@ -23,13 +23,7 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
                                       @Param("estado") String estado,
                                       Pageable pageable);
 
-    @Query(
-            nativeQuery = true,
-            value = "SELECT p.* " +
-                    "FROM parkingapp.plaza p " +
-                    "ORDER BY p.planta, p.tipo, p.estado"
-    )
-    List<Plaza> buscarPlazas();
+
 
 
 
@@ -49,19 +43,5 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
 
 
 
-    @Query(
-            nativeQuery = true,
-            value = "SELECT p.planta, " +
-                    "COUNT(*) AS total_plazas, " +
-                    "SUM(CASE WHEN p.estado = 'ocupada' THEN 1 ELSE 0 END) AS plazas_ocupadas, " +
-                    "CAST(SUM(CASE WHEN p.estado = 'ocupada' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS NUMERIC(5,2)) AS porcentaje_ocupacion, " +
-                    "(SELECT CAST(AVG(t.minutos) AS NUMERIC(8,2)) " +
-                    " FROM parkingapp.tickets t " +
-                    " JOIN parkingapp.plaza p2 ON p2.numero = t.numero_plaza " +
-                    " WHERE p2.planta = p.planta AND t.estado = 'cerrado') AS estancia_media " +
-                    "FROM parkingapp.plaza p " +
-                    "GROUP BY p.planta " +
-                    "ORDER BY p.planta"
-    )
-    List<ocupacionPlanta> ocupacionPorPlanta();
+
 }
