@@ -1,5 +1,6 @@
 package es.safareyes.parkingapp.Service;
 
+import es.safareyes.parkingapp.Modelos.Plaza;
 import es.safareyes.parkingapp.Repositorio.PlazaRepositorio;
 import es.safareyes.parkingapp.converter.PlazaMapper;
 import es.safareyes.parkingapp.converter.plazaLibresMapper;
@@ -39,5 +40,11 @@ public class plazaService {
     //Ocupacion planta
     public List<ocupacionPlanta> ocupacionPlanta() {
         return plazaRepositorio.ocupacionPorPlanta();
+    }
+
+
+    //Añadir plaza
+    public Plaza guardarPlaza(Plaza plaza) {
+        return plazaRepositorio.save(plaza);
     }
 }
