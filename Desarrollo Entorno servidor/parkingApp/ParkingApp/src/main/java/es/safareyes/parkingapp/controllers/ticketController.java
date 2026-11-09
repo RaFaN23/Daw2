@@ -2,12 +2,14 @@ package es.safareyes.parkingapp.controllers;
 
 import es.safareyes.parkingapp.Service.ticketService;
 import es.safareyes.parkingapp.dtos.importeTicket;
+import es.safareyes.parkingapp.dtos.listadoTickets;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1/tickets")
@@ -16,6 +18,22 @@ public class ticketController {
     @Autowired
     private ticketService ticketService;
 
+    //Lista de tique con filtro
+    @GetMapping
+    public Page<listadoTickets> listarTickets(
+            @RequestParam(required = false)String estado,
+            @RequestParam(required = false)String matricula,
+            @RequestParam(required = false)LocalDateTime desde,
+            @RequestParam(required = false)LocalDateTime hasta,
+            @RequestParam(required = false)Integer idUsuario,
+            Pageable pageable) {
+        return ticketService.listarTickets(estado, matricula, desde, hasta, idUsuario, pageable);
+    }
+
+
+
+
+    //BuscarPormatricula el importe
     @GetMapping("/{matricula}/importe")
     public ResponseEntity<importeTicket> obtenerImporteActual(
             @PathVariable String matricula) {

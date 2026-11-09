@@ -45,19 +45,19 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
                     "t.estado, t.minutos, t.importe, p.numero) " +
                     "FROM Tickets t " +
                     "JOIN t.plaza p " +
-                    "WHERE (:estado IS NULL OR t.estado = :estado) " +
-                    "AND (:matricula IS NULL OR t.matricula = :matricula) " +
-                    "AND (:desde IS NULL OR t.horaEntrada >= :desde) " +
-                    "AND (:hasta IS NULL OR t.horaEntrada <= :hasta) " +
+                    "WHERE t.estado = COALESCE(:estado, t.estado) " +
+                    "AND t.matricula = COALESCE(:matricula, t.matricula) " +
+                    "AND t.horaEntrada >= COALESCE(:desde, t.horaEntrada) " +
+                    "AND t.horaEntrada <= COALESCE(:hasta, t.horaEntrada) " +
                     "AND (:idUsuario IS NULL OR EXISTS (" +
                     "SELECT 1 FROM Usuarios u JOIN u.abonados a " +
                     "WHERE u.id = :idUsuario AND a = t.abonado))",
             countQuery = "SELECT COUNT(t) " +
                     "FROM Tickets t " +
-                    "WHERE (:estado IS NULL OR t.estado = :estado) " +
-                    "AND (:matricula IS NULL OR t.matricula = :matricula) " +
-                    "AND (:desde IS NULL OR t.horaEntrada >= :desde) " +
-                    "AND (:hasta IS NULL OR t.horaEntrada <= :hasta) " +
+                    "WHERE t.estado = COALESCE(:estado, t.estado) " +
+                    "AND t.matricula = COALESCE(:matricula, t.matricula) " +
+                    "AND t.horaEntrada >= COALESCE(:desde, t.horaEntrada) " +
+                    "AND t.horaEntrada <= COALESCE(:hasta, t.horaEntrada) " +
                     "AND (:idUsuario IS NULL OR EXISTS (" +
                     "SELECT 1 FROM Usuarios u JOIN u.abonados a " +
                     "WHERE u.id = :idUsuario AND a = t.abonado))"
@@ -68,8 +68,8 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
             @Param("desde") LocalDateTime desde,
             @Param("hasta") LocalDateTime hasta,
             @Param("idUsuario") Integer idUsuario,
-            Pageable pageable);
-
+            Pageable pageable
+    );
 
 
     @Query(
