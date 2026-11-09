@@ -101,12 +101,12 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
                     "SUM(t.importe) AS recaudacion " +
                     "FROM parkingapp.tickets t " +
                     "WHERE t.estado = 'cerrado' " +
-                    "AND CAST(t.hora_salida AS DATE) >= :desde " +
-                    "AND CAST(t.hora_salida AS DATE) <= :hasta " +
+                    "AND t.hora_salida >= :desde " +
+                    "AND t.hora_salida <= :hasta " +
                     "GROUP BY CAST(t.hora_salida AS DATE) " +
                     "ORDER BY dia"
     )
     List<recaudacionDia> recaudacionPorDia(
-            @Param("desde") LocalDate desde,
-            @Param("hasta") LocalDate hasta);
+            @Param("desde") LocalDateTime desde,
+            @Param("hasta") LocalDateTime hasta);
 }

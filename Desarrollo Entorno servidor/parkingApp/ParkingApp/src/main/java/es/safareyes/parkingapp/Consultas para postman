@@ -1,0 +1,16 @@
+//Endpoint1
+ http://localhost:8080/api/v1/plazas
+//endpoint 2
+ http://localhost:8080/api/v1/plazas/disponibilidad
+ //endpoint5
+ http://localhost:8080/api/v1/tarifas/vigente
+ //Endpoint8
+ http://localhost:8080/api/v1/tickets/1234ABC/importe
+ //Endpoint 11
+ http://localhost:8080/api/v1/tickets?estado=cerrado
+ //endpount 13
+ http://localhost:8080/api/v1/promociones
+ //endpoint 15
+ http://localhost:8080/api/v1/informes/recaudacion?desde=2026-09-28T09:00:00&hasta=2026-09-28T11:00:00
+ //endpoint 16
+ http://localhost:8080/api/v1/informes/ocupacion

@@ -3,6 +3,7 @@ package es.safareyes.parkingapp.controllers;
 
 import es.safareyes.parkingapp.Service.plazaService;
 import es.safareyes.parkingapp.dtos.PlazaDTO;
+import es.safareyes.parkingapp.dtos.ocupacionPlanta;
 import es.safareyes.parkingapp.dtos.plazasLibres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,4 +39,6 @@ public class plazaController {
     ) {
         return plazaService.listarLibres(planta, tipo);
     }
+
+    
 }

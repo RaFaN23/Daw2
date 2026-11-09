@@ -1,6 +1,7 @@
 package es.safareyes.parkingapp.Repositorio;
 
 import es.safareyes.parkingapp.Modelos.Promocion;
+import es.safareyes.parkingapp.dtos.promocionesDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,5 @@ public interface PromocionRepositorio extends JpaRepository<Promocion,Integer> {
                     "FROM parkingapp.promocion p " +
                     "ORDER BY p.nombre"
     )
-    List<Promocion> catalogoPromociones();
+    List<promocionesDTO> catalogoPromociones();
 }
