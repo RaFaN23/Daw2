@@ -2,7 +2,7 @@ package es.safareyes.parkingapp.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import java.util.List;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -32,10 +32,7 @@ public class detalleTicket {
     private BigDecimal precioPorMin;
 
 
-    private String nombrePromocion;
-
-    private String tipoPromocion;
-
+    private List<descuentoDTO> descuentos;
     private BigDecimal descuento;
 
     private BigDecimal importeDescuento;

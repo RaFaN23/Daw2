@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import java.util.List;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -63,17 +63,10 @@ public class Tickets {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "id_abonado",
-            nullable = false
-    )
+    @JoinColumn(name = "id_abonado", nullable = true)
     private Abonado abonado;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "id_promocion",
-            nullable = false
-    )
-    private Promocion promocion;
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
+    private List<Descuento> descuentos;
 }

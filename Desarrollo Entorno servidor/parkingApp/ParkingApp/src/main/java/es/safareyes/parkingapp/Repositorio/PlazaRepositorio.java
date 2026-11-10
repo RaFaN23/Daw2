@@ -51,7 +51,7 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
                     "(SELECT CAST(AVG(t.minutos) AS NUMERIC(8,2)) " +
                     " FROM parkingapp.tickets t " +
                     " JOIN parkingapp.plaza p2 ON p2.numero = t.numero_plaza " +
-                    " WHERE p2.planta = p.planta AND t.estado = 'cerrado') AS estancia_media " +
+                    " WHERE p2.planta = p.planta AND t.estado = 'PAGADO') AS estancia_media " +
                     "FROM parkingapp.plaza p " +
                     "GROUP BY p.planta " +
                     "ORDER BY p.planta"

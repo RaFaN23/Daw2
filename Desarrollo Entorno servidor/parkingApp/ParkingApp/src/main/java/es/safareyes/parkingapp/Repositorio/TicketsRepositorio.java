@@ -31,7 +31,7 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
                     "FROM parkingapp.tickets t " +
                     "JOIN parkingapp.tarifa tr ON tr.id = t.id_tarifa " +
                     "WHERE t.matricula = :matricula " +
-                    "AND t.estado = 'abierto'",
+                    "AND t.estado = 'ACTIVO'",
             nativeQuery = true
     )
     Optional<importeTicket> obtenerImporteActual(
@@ -100,7 +100,7 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
                     "COUNT(*) AS num_tickets, " +
                     "SUM(t.importe) AS recaudacion " +
                     "FROM parkingapp.tickets t " +
-                    "WHERE t.estado = 'cerrado' " +
+                    "WHERE t.estado = 'PAGADO' " +
                     "AND t.hora_salida >= :desde " +
                     "AND t.hora_salida <= :hasta " +
                     "GROUP BY CAST(t.hora_salida AS DATE) " +

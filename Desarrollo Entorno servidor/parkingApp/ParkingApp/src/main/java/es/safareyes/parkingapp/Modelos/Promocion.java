@@ -29,5 +29,5 @@ public class Promocion {
     private Integer minDescuento;
 
     @OneToMany(mappedBy = "promocion", fetch = FetchType.LAZY)
-    private List<Tickets> tickets;
+    private List<Descuento> descuentos;
 }

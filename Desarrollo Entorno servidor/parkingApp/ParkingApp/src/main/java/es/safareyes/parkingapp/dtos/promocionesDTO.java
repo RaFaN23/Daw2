@@ -1,6 +1,5 @@
 package es.safareyes.parkingapp.dtos;
 
-import es.safareyes.parkingapp.Modelos.Tickets;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
