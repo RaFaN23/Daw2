@@ -59,4 +59,6 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
     List<ocupacionPlanta> ocupacionPorPlanta();
     //ocupacion planta
 
+
+
 }

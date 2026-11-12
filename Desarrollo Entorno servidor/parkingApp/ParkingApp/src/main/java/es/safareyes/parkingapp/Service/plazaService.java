@@ -10,7 +10,10 @@ import es.safareyes.parkingapp.dtos.plazasLibres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -47,4 +50,44 @@ public class plazaService {
     public Plaza guardarPlaza(Plaza plaza) {
         return plazaRepositorio.save(plaza);
     }
+
+
+    // Bloquear o desbloquear una plaza
+    @Transactional
+    public Plaza cambiarEstado(Integer id, String estadoNuevo) {
+
+        // Buscar la plaza por su ID
+        Plaza plaza = plazaRepositorio.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "No existe esa plaza"
+                ));
+
+        // Comprobar que el estado sea válido
+        if (estadoNuevo == null ||
+                (!estadoNuevo.equalsIgnoreCase("libre") &&
+                        !estadoNuevo.equalsIgnoreCase("bloqueada"))) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "El estado debe ser libre o bloqueada"
+            );
+        }
+
+        // Comprobar que la plaza no esté ocupada
+        if (plaza.getEstado().equalsIgnoreCase("ocupada")) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "No se puede modificar una plaza ocupada"
+            );
+        }
+
+        // Cambiar el estado
+        plaza.setEstado(estadoNuevo.toLowerCase());
+
+        // Guardar los cambios
+        return plazaRepositorio.save(plaza);
+    }
+
+
 }

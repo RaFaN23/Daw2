@@ -1,6 +1,7 @@
 package es.safareyes.parkingapp.controllers;
 
 import es.safareyes.parkingapp.Service.ticketService;
+import es.safareyes.parkingapp.dtos.detalleTicket;
 import es.safareyes.parkingapp.dtos.importeTicket;
 import es.safareyes.parkingapp.dtos.listadoTickets;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,22 @@ public class ticketController {
     public ResponseEntity<importeTicket> obtenerImporteActual(
             @PathVariable String matricula) {
         return ticketService.obtenerImporteActual(matricula)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+
+
+
+
+
+    // Consultar detalle de un ticket
+    @GetMapping("/{id}")
+    public ResponseEntity<detalleTicket> detalleTicket(
+            @PathVariable Integer id) {
+
+        return ticketService.obtenerDetalleTicket(id, null)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

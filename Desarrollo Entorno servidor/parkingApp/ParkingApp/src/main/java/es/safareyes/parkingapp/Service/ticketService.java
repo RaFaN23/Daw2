@@ -1,9 +1,8 @@
 package es.safareyes.parkingapp.Service;
 
+import es.safareyes.parkingapp.Repositorio.DescuentoRepositorio;
 import es.safareyes.parkingapp.Repositorio.TicketsRepositorio;
-import es.safareyes.parkingapp.dtos.importeTicket;
-import es.safareyes.parkingapp.dtos.listadoTickets;
-import es.safareyes.parkingapp.dtos.recaudacionDia;
+import es.safareyes.parkingapp.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +20,8 @@ public class ticketService {
 
     @Autowired
     private TicketsRepositorio ticketsRepositorio;
-
+    @Autowired
+    private DescuentoRepositorio descuentoRepositorio;
 
 
     //Buscar importe por matri
@@ -50,6 +50,44 @@ public class ticketService {
             @RequestParam(required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime desde,
             @RequestParam(required = false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime hasta) {
         return ticketsRepositorio.recaudacionPorDia(desde, hasta);
+    }
+
+
+
+
+    // Consultar detalle de un ticket con sus descuentos
+    public Optional<detalleTicket> obtenerDetalleTicket(Integer id, Integer idUsuario) {
+
+        Optional<detalleTicketBase> ticketBase =
+                ticketsRepositorio.detalleTicketBase(id, idUsuario);
+
+        if (ticketBase.isEmpty()) {
+            return Optional.empty();
+        }
+
+        detalleTicketBase ticket = ticketBase.get();
+
+        List<descuentoDTO> descuentos =
+                descuentoRepositorio.buscarDescuentosPorTicket(id);
+
+        detalleTicket detalle = new detalleTicket(
+                ticket.getId(),
+                ticket.getMatricula(),
+                ticket.getHoraEntrada(),
+                ticket.getHoraSalida(),
+                ticket.getEstado(),
+                ticket.getMinutos(),
+                ticket.getNumeroPlaza(),
+                ticket.getPlanta(),
+                ticket.getMinCortesia(),
+                ticket.getPrecioPorMin(),
+                descuentos,
+                ticket.getDescuento(),
+                ticket.getImporteDescuento(),
+                ticket.getImporte()
+        );
+
+        return Optional.of(detalle);
     }
 }
 

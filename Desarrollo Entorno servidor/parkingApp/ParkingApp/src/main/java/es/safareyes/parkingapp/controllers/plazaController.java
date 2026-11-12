@@ -3,10 +3,7 @@ package es.safareyes.parkingapp.controllers;
 
 import es.safareyes.parkingapp.Modelos.Plaza;
 import es.safareyes.parkingapp.Service.plazaService;
-import es.safareyes.parkingapp.dtos.PlazaDTO;
-import es.safareyes.parkingapp.dtos.altaPlazaDTO;
-import es.safareyes.parkingapp.dtos.ocupacionPlanta;
-import es.safareyes.parkingapp.dtos.plazasLibres;
+import es.safareyes.parkingapp.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -58,6 +55,18 @@ public class plazaController {
         Plaza nuevaPlaza = plazaService.guardarPlaza(plaza);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevaPlaza);
+    }
+
+
+    // Bloquear o desbloquear una plaza
+    @PatchMapping("/{id}/estado")
+    public ResponseEntity<String> cambiarEstado(
+            @PathVariable Integer id,
+            @RequestBody cambiarEstadoPlazaDTO datos) {
+
+        plazaService.cambiarEstado(id, datos.getEstado());
+
+        return ResponseEntity.ok("Estado de la plaza actualizado correctamente");
     }
     
 }

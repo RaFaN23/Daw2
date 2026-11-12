@@ -1,10 +1,7 @@
 package es.safareyes.parkingapp.Repositorio;
 
 import es.safareyes.parkingapp.Modelos.Tickets;
-import es.safareyes.parkingapp.dtos.detalleTicket;
-import es.safareyes.parkingapp.dtos.importeTicket;
-import es.safareyes.parkingapp.dtos.listadoTickets;
-import es.safareyes.parkingapp.dtos.recaudacionDia;
+import es.safareyes.parkingapp.dtos.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -73,22 +70,20 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
 
 
     @Query(
-            "SELECT new es.safareyes.parkingapp.dtos.detalleTicket(" +
+            "SELECT new es.safareyes.parkingapp.dtos.detalleTicketBase(" +
                     "t.id, t.matricula, t.horaEntrada, t.horaSalida, t.estado, t.minutos, " +
                     "p.numero, p.planta, " +
                     "tr.minCortesia, tr.precioPorMin, " +
-                    "pr.nombre, pr.tipo, " +
                     "t.descuento, t.importeDescuento, t.importe) " +
                     "FROM Tickets t " +
                     "JOIN t.plaza p " +
                     "JOIN t.tarifa tr " +
-                    "LEFT JOIN t.promocion pr " +
                     "WHERE t.id = :id " +
                     "AND (:idUsuario IS NULL OR EXISTS (" +
                     "SELECT 1 FROM Usuarios u JOIN u.abonados a " +
                     "WHERE u.id = :idUsuario AND a = t.abonado))"
     )
-    Optional<detalleTicket> detalleTicket(
+    Optional<detalleTicketBase> detalleTicketBase(
             @Param("id") Integer id,
             @Param("idUsuario") Integer idUsuario);
 
