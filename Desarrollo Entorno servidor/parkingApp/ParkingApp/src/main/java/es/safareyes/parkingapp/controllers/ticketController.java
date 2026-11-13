@@ -66,4 +66,19 @@ public class ticketController {
                 .status(HttpStatus.CREATED)
                 .body(respuesta);
     }
+
+
+    // Aplicar una promoción a un ticket
+    @PostMapping("/{id}/descuentos")
+    public ResponseEntity<descuentoAplicadoDTO> aplicarDescuento(
+            @PathVariable Integer id,
+            @Valid @RequestBody aplicarDescuentoDTO datos) {
+
+        descuentoAplicadoDTO respuesta =
+                ticketService.aplicarDescuento(id, datos);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(respuesta);
+    }
 }

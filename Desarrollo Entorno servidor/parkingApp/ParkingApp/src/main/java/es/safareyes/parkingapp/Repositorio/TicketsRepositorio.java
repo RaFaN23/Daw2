@@ -2,9 +2,11 @@ package es.safareyes.parkingapp.Repositorio;
 
 import es.safareyes.parkingapp.Modelos.Tickets;
 import es.safareyes.parkingapp.dtos.*;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -108,4 +110,8 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
 
     //Esto es por ver los ticket activos y uno de los post
     boolean existsByMatriculaAndEstado(String matricula, String estado);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT t FROM Tickets t WHERE t.id = :id")
+    Optional<Tickets> buscarPorIdBloqueado(@Param("id") Integer id);
 }

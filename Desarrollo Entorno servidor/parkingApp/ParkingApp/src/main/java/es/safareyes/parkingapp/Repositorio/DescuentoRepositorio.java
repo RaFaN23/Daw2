@@ -26,8 +26,8 @@ public interface DescuentoRepositorio extends JpaRepository<Descuento, Integer> 
     boolean existsByTicketIdAndPromocionId(Integer idTicket, Integer idPromocion);
 
     // Sumar los minutos de descuento aplicados a un ticket
-    @Query("SELECT COALESCE(SUM(d.minutosAplicados), 0) " +
+    @Query("SELECT COALESCE(SUM(d.minutosAplicados), 0L) " +
             "FROM Descuento d " +
             "WHERE d.ticket.id = :idTicket")
-    Integer sumarMinutosDescuento(@Param("idTicket") Integer idTicket);
+    Long sumarMinutosDescuento(@Param("idTicket") Integer idTicket);
 }

@@ -1,11 +1,6 @@
 package es.safareyes.parkingapp.Service;
-import es.safareyes.parkingapp.Modelos.Plaza;
-import es.safareyes.parkingapp.Modelos.Tarifa;
-import es.safareyes.parkingapp.Modelos.Tickets;
-import es.safareyes.parkingapp.Repositorio.DescuentoRepositorio;
-import es.safareyes.parkingapp.Repositorio.PlazaRepositorio;
-import es.safareyes.parkingapp.Repositorio.TarifaRepositorio;
-import es.safareyes.parkingapp.Repositorio.TicketsRepositorio;
+import es.safareyes.parkingapp.Modelos.*;
+import es.safareyes.parkingapp.Repositorio.*;
 import es.safareyes.parkingapp.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -207,6 +202,87 @@ public class ticketService {
                 ticketGuardado.getPlaza().getPlanta(),
                 ticketGuardado.getPlaza().getTipo(),
                 ticketGuardado.getTarifa().getId()
+        );
+    }
+
+
+    @Autowired
+    private PromocionRepositorio promocionRepositorio;
+    // Aplicar una promoción manual a un ticket
+    @Transactional
+    public descuentoAplicadoDTO aplicarDescuento(
+            Integer idTicket,
+            aplicarDescuentoDTO datos) {
+
+        // Buscar y bloquear el ticket
+        Tickets ticket = ticketsRepositorio.buscarPorIdBloqueado(idTicket)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "No existe el ticket"
+                ));
+
+        if (!ticket.getEstado().equals("ACTIVO")) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "No se pueden aplicar descuentos a un ticket que no está activo"
+            );
+        }
+
+        // Buscar la promoción
+        Promocion promocion = promocionRepositorio.findById(datos.getIdPromocion())
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "No existe la promoción"
+                ));
+
+        // Comprobar que la promoción no se haya aplicado anteriormente
+        if (descuentoRepositorio.existsByTicketIdAndPromocionId(
+                idTicket, datos.getIdPromocion())) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Esta promoción ya se ha aplicado a este ticket"
+            );
+        }
+
+        // Sumar los minutos de descuento que ya tiene el ticket
+        Long minutosActuales =
+                descuentoRepositorio.sumarMinutosDescuento(idTicket);
+
+        // Obtener los minutos de la nueva promoción
+        Integer minutosPromocion = promocion.getMinDescuento();
+
+        if (minutosActuales + minutosPromocion > 180) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    "El descuento no puede superar los 180 minutos por ticket"
+            );
+        }
+
+        LocalDateTime fecha = LocalDateTime.now();
+
+        Descuento descuento = new Descuento();
+
+        descuento.setTicket(ticket);
+        descuento.setPromocion(promocion);
+        descuento.setMinutosAplicados(minutosPromocion);
+        descuento.setFechaAplicacion(fecha);
+
+        descuentoRepositorio.save(descuento);
+
+        Integer totalMinutos = minutosActuales.intValue() + minutosPromocion;
+
+        ticket.setDescuento(BigDecimal.valueOf(totalMinutos));
+
+        ticketsRepositorio.save(ticket);
+
+        return new descuentoAplicadoDTO(
+                ticket.getId(),
+                promocion.getId(),
+                promocion.getNombre(),
+                minutosPromocion,
+                totalMinutos,
+                fecha
         );
     }
 }
