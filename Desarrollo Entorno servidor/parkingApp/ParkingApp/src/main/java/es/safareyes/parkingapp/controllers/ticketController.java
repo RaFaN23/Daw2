@@ -5,10 +5,10 @@ import es.safareyes.parkingapp.dtos.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 
@@ -19,24 +19,28 @@ public class ticketController {
     @Autowired
     private ticketService ticketService;
 
-    //Lista de tique con filtro
+
+    // Lista de tickets con filtros
     @GetMapping
     public Page<listadoTickets> listarTickets(
-            @RequestParam(required = false)String estado,
-            @RequestParam(required = false)String matricula,
-            @RequestParam(required = false)LocalDateTime desde,
-            @RequestParam(required = false)LocalDateTime hasta,
-            @RequestParam(required = false)Integer idUsuario,
+            @RequestParam(required = false) String estado,
+            @RequestParam(required = false) String matricula,
+            @RequestParam(required = false) LocalDateTime desde,
+            @RequestParam(required = false) LocalDateTime hasta,
+            @RequestParam(required = false) Integer idUsuario,
             Pageable pageable) {
-        return ticketService.listarTickets(estado, matricula, desde, hasta, idUsuario, pageable);
+
+        return ticketService.listarTickets(
+                estado, matricula, desde, hasta, idUsuario, pageable
+        );
     }
 
 
-
-    //BuscarPormatricula el importe
+    // Buscar el importe actual por matrícula
     @GetMapping("/{matricula}/importe")
     public ResponseEntity<importeTicket> obtenerImporteActual(
             @PathVariable String matricula) {
+
         return ticketService.obtenerImporteActual(matricula)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -54,7 +58,7 @@ public class ticketController {
     }
 
 
-    //Crear un tickert
+    // Registrar entrada de un vehículo
     @PostMapping("/entrada")
     public ResponseEntity<entradaTicketRespuestaDTO> registrarEntrada(
             @Valid @RequestBody entradaTicketDTO datos) {
@@ -80,5 +84,17 @@ public class ticketController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(respuesta);
+    }
+
+
+    // Pagar un ticket
+    @PostMapping("/pagar")
+    public ResponseEntity<pagoTicketRespuestaDTO> pagarTicket(
+            @Valid @RequestBody pagarTicketDTO datos) {
+
+        pagoTicketRespuestaDTO ticketPagado =
+                ticketService.pagarTicket(datos);
+
+        return ResponseEntity.ok(ticketPagado);
     }
 }

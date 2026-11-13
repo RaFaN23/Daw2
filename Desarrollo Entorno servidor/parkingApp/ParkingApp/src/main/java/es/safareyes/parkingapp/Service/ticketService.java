@@ -1,12 +1,13 @@
 package es.safareyes.parkingapp.Service;
+
 import es.safareyes.parkingapp.Modelos.*;
 import es.safareyes.parkingapp.Repositorio.*;
 import es.safareyes.parkingapp.dtos.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,9 @@ import java.util.Optional;
 public class ticketService {
 
     @Autowired
+    private AbonadoRepositorio abonadoRepositorio;
+
+    @Autowired
     private TicketsRepositorio ticketsRepositorio;
 
     @Autowired
@@ -31,6 +35,9 @@ public class ticketService {
 
     @Autowired
     private TarifaRepositorio tarifaRepositorio;
+
+    @Autowired
+    private PromocionRepositorio promocionRepositorio;
 
 
     // Buscar importe por matrícula
@@ -65,7 +72,9 @@ public class ticketService {
 
 
     // Consultar detalle de un ticket con sus descuentos
-    public Optional<detalleTicket> obtenerDetalleTicket(Integer id, Integer idUsuario) {
+    public Optional<detalleTicket> obtenerDetalleTicket(
+            Integer id,
+            Integer idUsuario) {
 
         Optional<detalleTicketBase> ticketBase =
                 ticketsRepositorio.detalleTicketBase(id, idUsuario);
@@ -100,9 +109,10 @@ public class ticketService {
     }
 
 
-    // nuevo coch
+    // Registrar entrada de un vehículo
     @Transactional
-    public entradaTicketRespuestaDTO registrarEntrada(entradaTicketDTO datos) {
+    public entradaTicketRespuestaDTO registrarEntrada(
+            entradaTicketDTO datos) {
 
         // RN-01: Comprobar si la matrícula ya tiene un ticket activo
         String matricula = datos.getMatricula().trim().toUpperCase();
@@ -140,7 +150,7 @@ public class ticketService {
         LocalDateTime horaEntrada = LocalDateTime.now();
 
 
-        // RN-02 y RN-03: Buscar y bloquear la primera plaza libre
+        // RN-02 y RN-03: Buscar la primera plaza libre
         List<Plaza> plazas = plazaRepositorio.buscarPrimeraPlazaLibre(
                 tipo,
                 PageRequest.of(0, 1)
@@ -185,14 +195,22 @@ public class ticketService {
         ticket.setImporte(BigDecimal.ZERO);
         ticket.setPlaza(plaza);
         ticket.setTarifa(tarifa);
-        ticket.setAbonado(null);
+
+
+        // Comprobar si la matrícula tiene un abono vigente
+        Abonado abonado = abonadoRepositorio.buscarAbonadoVigente(
+                matricula,
+                horaEntrada.toLocalDate()
+        ).orElse(null);
+
+        ticket.setAbonado(abonado);
 
 
         // Guardar el ticket
         Tickets ticketGuardado = ticketsRepositorio.save(ticket);
 
 
-        // Devolver solamente los datos necesarios del ticket
+        // Devolver los datos necesarios del ticket
         return new entradaTicketRespuestaDTO(
                 ticketGuardado.getId(),
                 ticketGuardado.getMatricula(),
@@ -206,8 +224,6 @@ public class ticketService {
     }
 
 
-    @Autowired
-    private PromocionRepositorio promocionRepositorio;
     // Aplicar una promoción manual a un ticket
     @Transactional
     public descuentoAplicadoDTO aplicarDescuento(
@@ -222,11 +238,13 @@ public class ticketService {
                 ));
 
         if (!ticket.getEstado().equals("ACTIVO")) {
+
             throw new ResponseStatusException(
                     HttpStatus.CONFLICT,
                     "No se pueden aplicar descuentos a un ticket que no está activo"
             );
         }
+
 
         // Buscar la promoción
         Promocion promocion = promocionRepositorio.findById(datos.getIdPromocion())
@@ -234,6 +252,7 @@ public class ticketService {
                         HttpStatus.NOT_FOUND,
                         "No existe la promoción"
                 ));
+
 
         // Comprobar que la promoción no se haya aplicado anteriormente
         if (descuentoRepositorio.existsByTicketIdAndPromocionId(
@@ -245,20 +264,25 @@ public class ticketService {
             );
         }
 
+
         // Sumar los minutos de descuento que ya tiene el ticket
         Long minutosActuales =
                 descuentoRepositorio.sumarMinutosDescuento(idTicket);
+
 
         // Obtener los minutos de la nueva promoción
         Integer minutosPromocion = promocion.getMinDescuento();
 
         if (minutosActuales + minutosPromocion > 180) {
+
             throw new ResponseStatusException(
                     HttpStatus.UNPROCESSABLE_ENTITY,
                     "El descuento no puede superar los 180 minutos por ticket"
             );
         }
 
+
+        // Crear el descuento
         LocalDateTime fecha = LocalDateTime.now();
 
         Descuento descuento = new Descuento();
@@ -270,12 +294,12 @@ public class ticketService {
 
         descuentoRepositorio.save(descuento);
 
+
+        // Calcular el total de minutos promocionados
         Integer totalMinutos = minutosActuales.intValue() + minutosPromocion;
 
-        ticket.setDescuento(BigDecimal.valueOf(totalMinutos));
 
-        ticketsRepositorio.save(ticket);
-
+        // Devolver la respuesta
         return new descuentoAplicadoDTO(
                 ticket.getId(),
                 promocion.getId(),
@@ -284,5 +308,158 @@ public class ticketService {
                 totalMinutos,
                 fecha
         );
+    }
+
+
+    // Pagar un ticket
+    @Transactional
+    public pagoTicketRespuestaDTO pagarTicket(pagarTicketDTO datos) {
+
+        // Obtener la matrícula
+        String matricula = datos.getMatricula().trim().toUpperCase();
+
+
+        // Buscar y bloquear el ticket activo
+        Tickets ticket = ticketsRepositorio.buscarTicketActivoBloqueado(matricula)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "No existe un ticket activo para esta matrícula"
+                ));
+
+
+        // Guardar la hora de salida
+        LocalDateTime horaSalida = LocalDateTime.now();
+
+
+        // Calcular los minutos aparcados, redondeando hacia arriba
+        long segundos = java.time.Duration.between(
+                ticket.getHoraEntrada(),
+                horaSalida
+        ).getSeconds();
+
+        Integer minutos = (int) Math.ceil(segundos / 60.0);
+
+
+        // Obtener los minutos de promociones aplicadas
+        Long minutosDescuento = descuentoRepositorio.sumarMinutosDescuento(
+                ticket.getId()
+        );
+
+
+        // Comprobar si el cliente tiene un abono vigente
+        boolean esAbonado = ticket.getAbonado() != null
+                && !horaSalida.toLocalDate().isBefore(ticket.getAbonado().getFechaIni())
+                && !horaSalida.toLocalDate().isAfter(ticket.getAbonado().getFechaFin());
+
+
+        BigDecimal importe = BigDecimal.ZERO;
+        BigDecimal importeDescuento = BigDecimal.ZERO;
+
+
+        // Si no es abonado, calcular el importe
+        if (!esAbonado) {
+
+            // Calcular cuánto habría pagado sin promociones
+            BigDecimal importeSinPromociones = calcularImporte(
+                    minutos,
+                    0,
+                    ticket.getTarifa()
+            );
+
+
+            // Calcular cuánto debe pagar con las promociones
+            importe = calcularImporte(
+                    minutos,
+                    minutosDescuento.intValue(),
+                    ticket.getTarifa()
+            );
+
+
+            // Calcular el dinero ahorrado con las promociones
+            importeDescuento = importeSinPromociones.subtract(importe);
+
+            if (importeDescuento.compareTo(BigDecimal.ZERO) < 0) {
+                importeDescuento = BigDecimal.ZERO;
+            }
+        }
+
+
+        // Guardar los datos del cobro
+        ticket.setHoraSalida(horaSalida);
+        ticket.setMinutos(minutos);
+        ticket.setDescuento(BigDecimal.valueOf(minutosDescuento));
+        ticket.setImporteDescuento(importeDescuento);
+        ticket.setImporte(importe);
+        ticket.setEstado("PAGADO");
+
+
+        // Liberar la plaza
+        Plaza plaza = ticket.getPlaza();
+        plaza.setEstado("libre");
+
+        plazaRepositorio.save(plaza);
+        ticketsRepositorio.save(ticket);
+
+
+        // Devolver un DTO para evitar errores de carga diferida
+        return new pagoTicketRespuestaDTO(
+                ticket.getId(),
+                ticket.getMatricula(),
+                ticket.getHoraEntrada(),
+                ticket.getHoraSalida(),
+                ticket.getEstado(),
+                ticket.getMinutos(),
+                ticket.getDescuento(),
+                ticket.getImporteDescuento(),
+                ticket.getImporte(),
+                ticket.getPlaza().getNumero()
+        );
+    }
+
+
+    // Calcular el importe de un ticket
+    private BigDecimal calcularImporte(
+            Integer minutos,
+            Integer minutosPromocion,
+            Tarifa tarifa) {
+
+        // Restar los minutos de promoción
+        Integer minutosRestantes = Math.max(
+                0, minutos - minutosPromocion
+        );
+
+
+        // Restar los minutos de cortesía
+        Integer minutosFacturables = Math.max(
+                0, minutosRestantes - tarifa.getMinCortesia()
+        );
+
+
+        // Si no hay minutos que cobrar, el importe es 0
+        if (minutosFacturables == 0) {
+            return BigDecimal.ZERO;
+        }
+
+
+        // Calcular el importe sin aplicar el tope
+        BigDecimal importe = tarifa.getPrecioPorMin()
+                .multiply(BigDecimal.valueOf(minutosFacturables));
+
+
+        // Calcular los bloques de 24 horas
+        Integer bloques24Horas = (int) Math.ceil(minutos / 1440.0);
+
+
+        // Calcular el importe máximo permitido
+        BigDecimal importeMaximo = tarifa.getTopeMaximo()
+                .multiply(BigDecimal.valueOf(bloques24Horas));
+
+
+        // Aplicar el tope máximo
+        importe = importe.min(importeMaximo);
+
+
+        // Redondear a dos decimales
+        return importe.setScale(2, java.math.RoundingMode.HALF_UP);
     }
 }
