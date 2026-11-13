@@ -114,4 +114,8 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT t FROM Tickets t WHERE t.id = :id")
     Optional<Tickets> buscarPorIdBloqueado(@Param("id") Integer id);
+
+
+
+
 }
