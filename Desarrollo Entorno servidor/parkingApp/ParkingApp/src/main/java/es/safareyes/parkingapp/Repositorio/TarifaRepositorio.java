@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TarifaRepositorio extends JpaRepository<Tarifa, Integer> {
@@ -40,4 +42,9 @@ public interface TarifaRepositorio extends JpaRepository<Tarifa, Integer> {
             nativeQuery = true
     )
     List<tarifasVigentes> listarTodasLasTarifas();
+
+
+
+    //La tarifa mas reciente o activa para el ticket nuevo
+    Optional<Tarifa> findFirstByFechaAplicaLessThanEqualOrderByFechaAplicaDesc(LocalDate fecha);
 }

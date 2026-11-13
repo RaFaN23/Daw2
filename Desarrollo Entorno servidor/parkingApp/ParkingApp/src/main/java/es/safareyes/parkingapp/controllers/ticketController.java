@@ -1,11 +1,11 @@
 package es.safareyes.parkingapp.controllers;
 
 import es.safareyes.parkingapp.Service.ticketService;
-import es.safareyes.parkingapp.dtos.detalleTicket;
-import es.safareyes.parkingapp.dtos.importeTicket;
-import es.safareyes.parkingapp.dtos.listadoTickets;
+import es.safareyes.parkingapp.dtos.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +33,6 @@ public class ticketController {
 
 
 
-
     //BuscarPormatricula el importe
     @GetMapping("/{matricula}/importe")
     public ResponseEntity<importeTicket> obtenerImporteActual(
@@ -44,11 +43,6 @@ public class ticketController {
     }
 
 
-
-
-
-
-
     // Consultar detalle de un ticket
     @GetMapping("/{id}")
     public ResponseEntity<detalleTicket> detalleTicket(
@@ -57,5 +51,19 @@ public class ticketController {
         return ticketService.obtenerDetalleTicket(id, null)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+
+    //Crear un tickert
+    @PostMapping("/entrada")
+    public ResponseEntity<entradaTicketRespuestaDTO> registrarEntrada(
+            @Valid @RequestBody entradaTicketDTO datos) {
+
+        entradaTicketRespuestaDTO respuesta =
+                ticketService.registrarEntrada(datos);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(respuesta);
     }
 }

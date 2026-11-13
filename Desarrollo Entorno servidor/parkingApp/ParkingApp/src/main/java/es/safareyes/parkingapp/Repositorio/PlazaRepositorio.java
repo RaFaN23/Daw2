@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
+import jakarta.persistence.LockModeType;
+import org.springframework.data.jpa.repository.Lock;
 import java.util.List;
 @Repository
 public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
@@ -61,4 +62,19 @@ public interface PlazaRepositorio extends JpaRepository<Plaza, Integer> {
 
 
 
+    //Esto buscas plazas nuevas para abrir el ticket y ponerlo
+    // Buscar y bloquear la primera plaza libre
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT p FROM Plaza p " +
+            "WHERE LOWER(p.estado) = 'libre' " +
+            "AND LOWER(p.tipo) = LOWER(:tipo) " +
+            "ORDER BY CASE p.planta " +
+            "WHEN -1 THEN 1 " +
+            "WHEN -2 THEN 2 " +
+            "WHEN -3 THEN 3 " +
+            "ELSE 4 END, p.numero ASC")
+    List<Plaza> buscarPrimeraPlazaLibre(
+            @Param("tipo") String tipo,
+            Pageable pageable
+    );
 }

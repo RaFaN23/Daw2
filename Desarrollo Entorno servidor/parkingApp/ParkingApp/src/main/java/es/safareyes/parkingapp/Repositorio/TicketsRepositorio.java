@@ -104,4 +104,8 @@ public interface TicketsRepositorio extends JpaRepository<Tickets, Integer> {
     List<recaudacionDia> recaudacionPorDia(
             @Param("desde") LocalDateTime desde,
             @Param("hasta") LocalDateTime hasta);
+
+
+    //Esto es por ver los ticket activos y uno de los post
+    boolean existsByMatriculaAndEstado(String matricula, String estado);
 }
