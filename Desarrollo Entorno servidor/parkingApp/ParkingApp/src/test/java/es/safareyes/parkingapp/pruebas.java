@@ -1,224 +1,223 @@
 package es.safareyes.parkingapp;
-import es.safareyes.parkingapp.Modelos.Plaza;
-import es.safareyes.parkingapp.Modelos.Promocion;
-import es.safareyes.parkingapp.Modelos.Tarifa;
-import es.safareyes.parkingapp.Repositorio.PlazaRepositorio;
-import es.safareyes.parkingapp.Repositorio.PromocionRepositorio;
-import es.safareyes.parkingapp.Repositorio.TarifaRepositorio;
-import es.safareyes.parkingapp.Repositorio.TicketsRepositorio;
-import es.safareyes.parkingapp.dtos.detalleTicket;
-import es.safareyes.parkingapp.dtos.importeTicket;
-import es.safareyes.parkingapp.dtos.listadoTickets;
-import es.safareyes.parkingapp.dtos.ocupacionPlanta;
-import es.safareyes.parkingapp.dtos.recaudacionDia;
-import es.safareyes.parkingapp.dtos.plazasLibres;
-import es.safareyes.parkingapp.dtos.tarifasVigentes;
+
+import es.safareyes.parkingapp.Service.*;
+import es.safareyes.parkingapp.dtos.*;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class pruebas {
 
-//    @Autowired
-//    private PlazaRepositorio plazaRepositorio;
-//    @Test
-//    void buscarPlaza(){
-//        List<Plaza> plazas = plazaRepositorio.buscarPlazas();
-//        System.out.println("plazas encontrados: " + plazas.size());
-//
-//        for (Plaza plaza : plazas) {
-//            System.out.println(
-//                    "Planta: " + plaza.getPlanta() +
-//                            " | Tipo: " + plaza.getTipo() +
-//                            " | Estado: " + plaza.getEstado()
-//            );
-//        }
-//    }
+    @Autowired
+    private plazaService plazaService;
+
+    @Autowired
+    private tarifaService tarifaService;
+
+    @Autowired
+    private ticketService ticketService;
+
+    @Autowired
+    private promocionesService promocionesService;
 
 
+    // ==========================================
+    // PRUEBAS DE PLAZAS
+    // ==========================================
 
-//    @Test
-//    void plazasLibresPorPlantas(){
-//
-//        List<plazasLibres> plazas = plazaRepositorio.plazasLibresPorPlantas();
-//
-//        System.out.println("Plazas encontradas: " + plazas.size());
-//
-//        for (plazasLibres plaza : plazas){
-//            System.out.println(
-//                    "Planta: " + plaza.getPlanta() +
-//                            " | Tipo: " + plaza.getTipo() +
-//                            " | Libres: " + plaza.getPlazasLibres()
-//            );
-//        }
-//    }
+    // GET /api/v1/plazas
+    @Test
+    public void listarPlazas() {
 
+        Page<PlazaDTO> plazas = plazaService.listar(
+                null,
+                null,
+                null,
+                PageRequest.of(0, 10)
+        );
 
-//    @Autowired
-//    private TarifaRepositorio tarifaRepositorio;
-//
-//    @Test
-//    void tarifaVigente() {
-//
-//        tarifasVigentes tarifa = tarifaRepositorio.tarifaVigente();
-//
-//        System.out.println("Tarifa vigente:");
-//        System.out.println("ID: " + tarifa.getIdTarifa());
-//        System.out.println("Minutos cortesía: " + tarifa.getMinCortesia());
-//        System.out.println("Precio por minuto: " + tarifa.getPrecioPorMin());
-//        System.out.println("Tope máximo: " + tarifa.getTopeMaximo());
-//        System.out.println("Fecha de aplicación: " + tarifa.getFechaAplica());
-//    }
-//
-//
-//
-//    @Autowired
-//    private TicketsRepositorio ticketsRepositorio;
-//
-//    @Test
-//    void importeTicket() {
-//
-//        importeTicket ticket =
-//                ticketsRepositorio.obtenerImporteActual("1234ABC");
-//
-//        System.out.println("Matrícula: " + ticket.getMatricula());
-//        System.out.println("Minutos: " + ticket.getMinutos());
-//        System.out.println("Importe actual: " + ticket.getImporte() + " €");
-//    }
-//
-//
-//    @Test
-//    void listarTicketsAdmin() {
-//
-//        Page<listadoTickets> pagina = ticketsRepositorio.listarTickets(
-//                null, null, null, null, null,
-//                PageRequest.of(0, 5, Sort.by("horaEntrada").descending()));
-//
-//        System.out.println("Total tickets: " + pagina.getTotalElements()
-//                + " | Páginas: " + pagina.getTotalPages());
-//
-//        for (listadoTickets t : pagina.getContent()) {
-//            System.out.println(
-//                    "ID: " + t.getId() +
-//                            " | Matrícula: " + t.getMatricula() +
-//                            " | Estado: " + t.getEstado() +
-//                            " | Entrada: " + t.getHoraEntrada() +
-//                            " | Plaza: " + t.getNumeroPlaza() +
-//                            " | Importe: " + t.getImporte() + " €"
-//            );
-//        }
-//    }
-//
-//    @Test
-//    void listarTicketsAbonado() {
-//
-//        Page<listadoTickets> pagina = ticketsRepositorio.listarTickets(
-//                null, null, null, null, 1,
-//                PageRequest.of(0, 5));
-//
-//        System.out.println("Tickets del usuario 1: " + pagina.getTotalElements());
-//
-//        for (listadoTickets t : pagina.getContent()) {
-//            System.out.println(
-//                    "ID: " + t.getId() +
-//                            " | Matrícula: " + t.getMatricula() +
-//                            " | Estado: " + t.getEstado()
-//            );
-//        }
-//    }
-//
-//
-//
-//    @Test
-//    void detalleTicket() {
-//
-//        detalleTicket t = ticketsRepositorio.detalleTicket(3, null).orElse(null);
-//
-//        if (t == null) {
-//            System.out.println("Ticket no encontrado");
-//            return;
-//        }
-//
-//        System.out.println("ID: " + t.getId());
-//        System.out.println("Matrícula: " + t.getMatricula());
-//        System.out.println("Entrada: " + t.getHoraEntrada() + " | Salida: " + t.getHoraSalida());
-//        System.out.println("Estado: " + t.getEstado() + " | Minutos: " + t.getMinutos());
-//        System.out.println("Plaza: " + t.getNumeroPlaza() + " (planta " + t.getPlanta() + ")");
-//        System.out.println("Tarifa: " + t.getPrecioPorMin() + " €/min, cortesía " + t.getMinCortesia() + " min");
-//        System.out.println("Promoción: " + t.getNombrePromocion() + " (" + t.getTipoPromocion() + ")");
-//        System.out.println("Descuento: " + t.getDescuento() + " | Importe descontado: " + t.getImporteDescuento() + " €");
-//        System.out.println("Importe final: " + t.getImporte() + " €");
-//
-//        System.out.println("¿Usuario 1 ve el ticket 3? "
-//                + ticketsRepositorio.detalleTicket(3, 1).isPresent());
-//    }
-//
-//
-//
-//    @Autowired
-//    private PromocionRepositorio promocionRepositorio;
-//
-//    @Test
-//    void catalogoPromociones() {
-//
-//        List<Promocion> promociones = promocionRepositorio.catalogoPromociones();
-//
-//        System.out.println("Promociones encontradas: " + promociones.size());
-//
-//        for (Promocion p : promociones) {
-//            System.out.println(
-//                    "ID: " + p.getId() +
-//                            " | Nombre: " + p.getNombre() +
-//                            " | Tipo: " + p.getTipo() +
-//                            " | Descuento: " + p.getMinDescuento()
-//            );
-//        }
-//    }
-//
-//
-//
-//    @Test
-//    void recaudacionPorDia() {
-//
-//        List<recaudacionDia> dias = ticketsRepositorio.recaudacionPorDia(
-//                LocalDate.of(2026, 9, 1),
-//                LocalDate.of(2026, 9, 30));
-//
-//        System.out.println("Días con recaudación: " + dias.size());
-//
-//        for (recaudacionDia d : dias) {
-//            System.out.println(
-//                    "Día: " + d.getDia() +
-//                            " | Tickets: " + d.getNumTickets() +
-//                            " | Recaudación: " + d.getRecaudacion() + " €"
-//            );
-//        }
-//    }
+        System.out.println("===== LISTADO DE PLAZAS =====");
+
+        plazas.getContent().forEach(System.out::println);
+
+        assertNotNull(plazas);
+    }
 
 
-//
-//    @Test
-//    void ocupacionPorPlanta() {
-//
-//        List<ocupacionPlanta> plantas = plazaRepositorio.ocupacionPorPlanta();
-//
-//        System.out.println("Plantas: " + plantas.size());
-//
-//        for (ocupacionPlanta o : plantas) {
-//            System.out.println(
-//                    "Planta: " + o.getPlanta() +
-//                            " | Plazas: " + o.getTotalPlazas() +
-//                            " | Ocupadas: " + o.getPlazasOcupadas() +
-//                            " | Ocupación: " + o.getPorcentajeOcupacion() + " %" +
-//                            " | Estancia media: " + o.getEstanciaMedia() + " min"
-//            );
-//        }
-//    }
+    // GET /api/v1/plazas/disponibilidad
+    @Test
+    public void plazasDisponibles() {
+
+        List<plazasLibres> plazas = plazaService.listarLibres(
+                null,
+                null
+        );
+
+        System.out.println("===== PLAZAS DISPONIBLES =====");
+
+        plazas.forEach(System.out::println);
+
+        assertNotNull(plazas);
+    }
+
+
+    // GET /api/v1/informes/ocupacion
+    @Test
+    public void ocupacionPorPlanta() {
+
+        List<ocupacionPlanta> ocupacion =
+                plazaService.ocupacionPlanta();
+
+        System.out.println("===== OCUPACION POR PLANTA =====");
+
+        ocupacion.forEach(System.out::println);
+
+        assertNotNull(ocupacion);
+    }
+
+
+    // ==========================================
+    // PRUEBAS DE TARIFAS
+    // ==========================================
+
+    // GET /api/v1/tarifas/vigente
+    @Test
+    public void tarifaVigente() {
+
+        tarifasVigentes tarifa =
+                tarifaService.obtenerTarifaVigente();
+
+        System.out.println("===== TARIFA VIGENTE =====");
+
+        System.out.println(tarifa);
+
+        assertNotNull(tarifa);
+    }
+
+
+    // GET /api/v1/tarifas
+    @Test
+    public void listarTodasLasTarifas() {
+
+        List<tarifasVigentes> tarifas =
+                tarifaService.listarTodasLasTarifas();
+
+        System.out.println("===== TODAS LAS TARIFAS =====");
+
+        tarifas.forEach(System.out::println);
+
+        assertNotNull(tarifas);
+    }
+
+
+    // ==========================================
+    // PRUEBAS DE TICKETS
+    // ==========================================
+
+    // GET /api/v1/tickets/{matricula}/importe
+    @Test
+    public void consultarImporteTicket() {
+
+        Optional<importeTicket> importe =
+                ticketService.obtenerImporteActual("0123BCD");
+
+        System.out.println("===== IMPORTE DEL TICKET =====");
+
+        if (importe.isPresent()) {
+            System.out.println(importe.get());
+        } else {
+            System.out.println("No existe un ticket activo para esa matrícula");
+        }
+
+        assertNotNull(importe);
+    }
+
+
+    // GET /api/v1/tickets
+    @Test
+    public void listarTickets() {
+
+        Page<listadoTickets> tickets =
+                ticketService.listarTickets(
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        PageRequest.of(0, 10)
+                );
+
+        System.out.println("===== LISTADO DE TICKETS =====");
+
+        tickets.getContent().forEach(System.out::println);
+
+        assertNotNull(tickets);
+    }
+
+
+    // GET /api/v1/tickets/{id}
+    @Test
+    public void consultarDetalleTicket() {
+
+        Optional<detalleTicket> ticket =
+                ticketService.obtenerDetalleTicket(16, null);
+
+        System.out.println("===== DETALLE DEL TICKET =====");
+
+        if (ticket.isPresent()) {
+            System.out.println(ticket.get());
+        } else {
+            System.out.println("No se ha encontrado el ticket");
+        }
+
+        assertNotNull(ticket);
+    }
+
+
+    // GET /api/v1/informes/recaudacion
+    @Test
+    public void recaudacionPorDia() {
+
+        List<recaudacionDia> recaudacion =
+                ticketService.recaudacionPorDia(
+                        LocalDateTime.of(2026, 1, 1, 0, 0),
+                        LocalDateTime.now()
+                );
+
+        System.out.println("===== RECAUDACION POR DIA =====");
+
+        recaudacion.forEach(System.out::println);
+
+        assertNotNull(recaudacion);
+    }
+
+
+    // ==========================================
+    // PRUEBAS DE PROMOCIONES
+    // ==========================================
+
+    // GET /api/v1/promociones
+    @Test
+    public void catalogoPromociones() {
+
+        List<promocionesDTO> promociones =
+                promocionesService.catalogoPromociones();
+
+        System.out.println("===== CATALOGO DE PROMOCIONES =====");
+
+        promociones.forEach(System.out::println);
+
+        assertNotNull(promociones);
+    }
+
 }
